@@ -27,4 +27,7 @@
   - Java 25 path
   - JBang extension
 
+## 🧰 Add custom tool: SliDesk 🧰
+
+
 ## 🗑️ Clean Resources 🗑️ 

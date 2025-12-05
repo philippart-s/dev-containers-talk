@@ -3,6 +3,13 @@
 	"name": "Java",
 	"image": "mcr.microsoft.com/devcontainers/base:noble",
 
+	// Executed commands after container creation
+	"postCreateCommand": {
+		"SliDesk": "./.devcontainer/install-slidesk.sh",
+		"Javelit": "jbang app install javelit@javelit"
+	},
+
+ 	// Features added to the image
 	"features": {
 		"ghcr.io/jsburckhardt/devcontainer-features/bat:1": {},
 		"ghcr.io/devcontainers/features/java:1": {
@@ -16,9 +23,13 @@
 			"jdkVersion": "25-tem"
 		}
 	},
+
+	// Mandatory to be allow the JBang VSCode extention to run JBang
 	"remoteEnv": {
   	"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"
 	},
+
+	// IDE customization
 	"customizations": {
 		"vscode": {
 			"settings": {

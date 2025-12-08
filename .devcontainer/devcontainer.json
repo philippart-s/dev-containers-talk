@@ -6,7 +6,7 @@
 	// Executed commands after container creation
 	"postCreateCommand": {
 		"SliDesk": "./.devcontainer/install-slidesk.sh",
-		"Javelit": "jbang app install javelit@javelit"
+		"Javelit": "jbang app setup && jbang app install javelit@javelit"
 	},
 
  	// Features added to the image

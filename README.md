@@ -27,4 +27,9 @@
   - Java 25 path
   - JBang extension
 
+## 🧰 Add custom tool: SliDesk and JBang 🧰
+- create the installation script `install-slideck.sh`
+- add post command configuration `"SliDesk": "./.devcontainer/install-slidesk.sh"` && `"Javelit": "jbang app setup && jbang app install javelit@javelit"` in `postCreateCommand` configuration
+- add Javelit to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
+
 ## 🗑️ Clean Resources 🗑️ 

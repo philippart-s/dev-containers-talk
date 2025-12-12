@@ -5,7 +5,7 @@
 
 	// Executed commands after container creation
 	"postCreateCommand": {
-		"SliDesk": "./.devcontainer/install-slidesk.sh",
+		//"SliDesk": "./.devcontainer/install-slidesk.sh",
 		"Javelit": "jbang app setup && jbang app install javelit@javelit"
 	},
 
@@ -21,7 +21,9 @@
 		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
 			"jdkDistro": "tem",
 			"jdkVersion": "25-tem"
-		}
+		},
+		//"./slidesk": {},
+		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {}
 	},
 
 	// Mandatory to be allow the JBang VSCode extention to run JBang

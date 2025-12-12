@@ -1,0 +1,17 @@
+{
+  "name": "SliDesk",
+  "id": "slidesk",
+  "version": "1.0.0",
+  "description": "A feature to install SliDesk",
+  "options": {
+    "distribution": {
+      "type": "string",
+      "enum": [
+        "arm",
+        "amd"
+      ],
+      "default": "arm",
+      "description": "Choose your distribution type: arm or amd."
+    }
+  }
+}

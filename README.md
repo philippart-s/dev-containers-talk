@@ -71,4 +71,17 @@
 - `CMD+SHIFT+P` && `Dev Containers: Add Dev Containers configuration Files...`
 - `ghcr.io/philippart-s/dev-containers-template-talk/java-coding:latest`
 
+## ⚡️ Optimization ⚡️
+- update the `devcontainer-features.json` file to use custome image: `"image": "wilda/dev-container-talk:1.0.0"`
+- add the dev container CLI:
+```json
+"ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
+			"version": "latest",
+			"nodeVersion": "latest"
+		}
+```
+- add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
+- build and push image: `devcontainer build --workspace-folder . --push true --image-name wilda/devcontainer-image-talk:1.0.0`
+- update the `devcontainer-features.json` file to use dev container image: `"image": "wilda/devcontainer-image-talk:1.0.0"`
+
 ## 🗑️ Clean Resources 🗑️ 

@@ -27,7 +27,7 @@
   - Java 25 path
   - JBang extension
 
-## 🧰 Add custom tool: SliDesk and JBang 🧰
+## 🧰 Add custom tool: SliDesk and Javelit 🧰
 - create the installation script `install-slideck.sh`
 - add post command configuration `"SliDesk": "./.devcontainer/install-slidesk.sh"` && `"Javelit": "jbang app setup && jbang app install javelit@javelit"` in `postCreateCommand` configuration
 - add Javelit to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
@@ -81,7 +81,7 @@
 		}
 ```
 - add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
-- build and push image: `devcontainer build --workspace-folder . --push true --image-name wilda/devcontainer-image-talk:1.0.0`
-- update the `devcontainer-features.json` file to use dev container image: `"image": "wilda/devcontainer-image-talk:1.0.0"`
+- build and push image: `devcontainer build --workspace-folder . --push true --image-name wilda/devcontainer-base-image-talk:1.0.0`
+- update the `devcontainer-features.json` file to use dev container image: `"image": "wilda/devcontainer-base-image-talk:1.0.0"`
 
 ## 🗑️ Clean Resources 🗑️ 

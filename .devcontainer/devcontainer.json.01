@@ -1,0 +1,34 @@
+{ // 01-⚙️ Customize devcontainer.json ⚙️
+  // Dev Container to do Java coding
+	"name": "Java Coding",
+	"image": "mcr.microsoft.com/devcontainers/base:noble",
+
+	// Features added to the image
+	"features": {
+		"ghcr.io/devcontainers/features/java:1": {
+      "installMaven": true,
+			"mavenVersion": "3.9.11",
+      "version": "25",
+      "jdkDistro": "tem"
+    },
+		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
+			"jdkDistro": "tem",
+			"jdkVersion": "25-tem"
+		}
+	},
+
+	// IDE customization
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"java.configuration.runtimes": [
+					{
+						"name": "JavaSE-25",
+						"path": "/usr/local/sdkman/candidates/java/current/"
+					}
+				]
+			},
+			"extensions": ["jbangdev.jbang-vscode"]
+		}
+	}
+}

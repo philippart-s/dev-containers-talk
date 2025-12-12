@@ -67,4 +67,8 @@
 ```
 - test PSQL connexion: `psql -h localhost -U postgres -d postgres`
 
+## 🪄 Create & use template 🪄
+- `CMD+SHIFT+P` && `Dev Containers: Add Dev Containers configuration Files...`
+- `ghcr.io/philippart-s/dev-containers-template-talk/java-coding:latest`
+
 ## 🗑️ Clean Resources 🗑️ 

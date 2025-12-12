@@ -1,8 +1,15 @@
 {
   // Ubuntu image
 	"name": "Java",
-	"image": "mcr.microsoft.com/devcontainers/base:noble",
-
+	//"image": "mcr.microsoft.com/devcontainers/base:noble",
+	/*"build": {
+		"dockerfile": "Dockerfile"
+	},*/
+	//"image": "wilda/dev-container-talk:1.0.0",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "devcontainer",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+		
 	// Executed commands after container creation
 	"postCreateCommand": {
 		//"SliDesk": "./.devcontainer/install-slidesk.sh",
@@ -23,7 +30,8 @@
 			"jdkVersion": "25-tem"
 		},
 		//"./slidesk": {},
-		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {}
+		//"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {}
+		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
 	},
 
 	// Mandatory to be allow the JBang VSCode extention to run JBang

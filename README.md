@@ -44,4 +44,27 @@
 - set the feature package public in the GH repository
 - update the `devcontainer.json` file to use the deployed feature
 
+## 🐳 Use custom images 🐳
+- create the `Dockerfile`
+- update the `devcontainer-features.json` file:
+```json
+"build": {
+		"dockerfile": "Dockerfile"
+	},
+```
+- create and push the image: `docker build -t wilda/dev-container-talk:1.0.0 .` && `docker push wilda/dev-container-talk:1.0.0`
+- update the `devcontainer-features.json` file: `"image": "wilda/dev-container-talk:1.0.0",`
+- create the `docker-compose.yml` file
+- update the `devcontainer-features.json` file: 
+```json
+"dockerComposeFile": "docker-compose.yml",
+	"service": "devcontainer",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	
+	"features": {
+		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
+	},
+```
+- test PSQL connexion: `psql -h localhost -U postgres -d postgres`
+
 ## 🗑️ Clean Resources 🗑️ 

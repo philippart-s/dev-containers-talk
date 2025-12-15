@@ -1,8 +1,10 @@
-{	// 03-🧩 Create a feature 🧩
+{	// 04-🐳 Use custom images 🐳
 
   // Dev Container to do Java coding
 	"name": "Java Coding",
-	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "devcontainer",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
 	// Executed commands after container creation
 	"postCreateCommand": {
@@ -21,8 +23,8 @@
 			"jdkDistro": "tem",
 			"jdkVersion": "25-tem"
 		},
-		//"./slidesk": {},
-		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {}
+		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {},
+		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
 	},
 
 	// Mandatory to be allow the JBang VSCode extention to run JBang

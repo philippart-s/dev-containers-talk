@@ -51,7 +51,7 @@
 - create the `devcontainer-features.json` file in the `.devcontainer/slidesk` folder
 - add `install.sh` file
 - update the `devcontainer-features.json` file 
-- update the `devconatainer.json` file to use the new feature
+- update the `devcontainer.json` file to use the new feature
 
 ### 🪾 step-05 🪾
 
@@ -66,7 +66,7 @@
 ### 🪾 step-06 🪾
 
 - create the `Dockerfile`
-- update the `devcontainer-features.json` file:
+- update the `devcontainer.json` file:
 ```json
 "build": {
 		"dockerfile": "Dockerfile"
@@ -76,12 +76,12 @@
 
 ### 🪾 step-07 🪾
 
-- update the `devcontainer-features.json` file: `"image": "wilda/dev-container-talk:1.0.0",`
+- update the `devcontainer.json` file: `"image": "wilda/dev-container-talk:1.0.0",`
 
 ### 🪾 step-08 🪾
 
 - create the `docker-compose.yml` file
-- update the `devcontainer-features.json` file: 
+- update the `devcontainer.json` file: 
 ```json
 "dockerComposeFile": "docker-compose.yml",
 	"service": "devcontainer",
@@ -104,7 +104,7 @@
 
 ### 🪾 step-10 🪾
 
-- update the `devcontainer-features.json` file to use custom image: `"image": "wilda/dev-container-talk:1.0.0"`
+- update the `devcontainer.json` file to use custom image: `"image": "wilda/dev-container-talk:1.0.0"`
 - add the dev container CLI:
 ```json
 "ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
@@ -113,10 +113,10 @@
 		}
 ```
 - add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
-- build and push image: `devcontainer build --workspace-folder . --push true --image-name wilda/devcontainer-base-image-talk:1.0.0`
+- build and push image: `devcontainer build --workspace-folder . --push false --image-name wilda/devcontainer-base-image-talk:1.0.0`
 
 ### 🪾 step-11 🪾
 
-- update the `devcontainer-features.json` file to use dev container image: `"image": "wilda/devcontainer-base-image-talk:1.0.0"`
+- update the `devcontainer.json` file to use dev container image: `"image": "wilda/devcontainer-base-image-talk:1.0.0"`
 
 ## 🗑️ Clean Resources 🗑️ 

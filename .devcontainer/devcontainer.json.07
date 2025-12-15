@@ -1,7 +1,0 @@
-{	// 07-🎉 Final version 🎉
-
-  // Dev Container to do Java coding
-	"name": "Java Coding",
-	//XX-base-image
-	"image": "wilda/devcontainer-base-image-talk:1.0.0",
-}

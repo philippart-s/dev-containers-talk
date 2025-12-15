@@ -3,6 +3,8 @@
 ## 🏗️ Dev Containers installation 🏗️
 
 ## 📦 Talk resources 📦
+ - open each VSCode on the dedicated project and branch (step-xx) + dev-containers-template-talk and feature-slidesk-talk
+ - open each VSCode project with the Dev Containers extension
 
 ## 🎉 Init Dev Containers 🎉
 

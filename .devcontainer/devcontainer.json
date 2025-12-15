@@ -1,9 +1,17 @@
-{ // 01-⚙️ Customize devcontainer.json ⚙️
+{	// 04-🐳 Use custom images 🐳
+
   // Dev Container to do Java coding
 	"name": "Java Coding",
-	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	 "build": {
+	 	"dockerfile": "Dockerfile"
+	 },
 
-	// Features added to the image
+	// Executed commands after container creation
+	"postCreateCommand": {
+		"Javelit": "jbang app setup && jbang app install javelit@javelit"
+	},
+
+ 	// Features added to the image
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
@@ -14,7 +22,13 @@
 		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
 			"jdkDistro": "tem",
 			"jdkVersion": "25-tem"
-		}
+		},
+		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {}
+	},
+
+	// Mandatory to be allow the JBang VSCode extention to run JBang
+	"remoteEnv": {
+  	"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"
 	},
 
 	// IDE customization

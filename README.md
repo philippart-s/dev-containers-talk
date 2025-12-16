@@ -5,7 +5,9 @@
 ## 📦 Talk resources 📦
  - open each VSCode on the dedicated project and branch (step-xx) + dev-containers-template-talk and feature-slidesk-talk
  - open each VSCode project with the Dev Containers extension
-
+ - open a tab in web browser: https://github.com/devcontainers/feature-starter
+ - open a tab in web browser: https://github.com/devcontainers/template-starter
+ 
 ## 🎉 Init Dev Containers 🎉
 
 ### 🪾 step-00 🪾

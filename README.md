@@ -3,6 +3,11 @@
 ## 🏗️ Dev Containers installation 🏗️
 
 ## 📦 Talk resources 📦
+  - open the 12 VSCode projects
+  - open in Firefox:
+    - https://github.com/devcontainers/template-starter
+    - https://github.com/devcontainers/feature-starter
+
 
 ## 🎉 Init Dev Containers 🎉
 

@@ -124,6 +124,6 @@
 
 ### 🪾 step-11 🪾
 
-- update the `devcontainer.json` file to use dev container image: `"image": "wilda/devcontainer-base-image-talk:1.0.0"`
+- update the `devcontainer.json` file to use dev container image: `"image": "wilda/devcontainer-base-image-talk:1.1.0"`
 
 ## 🗑️ Clean Resources 🗑️ 

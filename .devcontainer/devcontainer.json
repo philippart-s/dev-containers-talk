@@ -28,7 +28,7 @@
 					}
 				]
 			},
-			"extensions": ["jbangdev.jbang-vscode"]
+			"extensions": ["jbangdev.jbang-vscode", "vscjava.vscode-java-pack"]
 		}
 	}
 }

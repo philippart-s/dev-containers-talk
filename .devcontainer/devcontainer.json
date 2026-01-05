@@ -23,7 +23,6 @@
 			"jdkDistro": "tem",
 			"jdkVersion": "25-tem"
 		},
-		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {},
 		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
 	},
 
@@ -43,7 +42,7 @@
 					}
 				]
 			},
-			"extensions": ["jbangdev.jbang-vscode"]
+			"extensions": ["jbangdev.jbang-vscode", "vscjava.vscode-java-pack"]
 		}
 	}
 }

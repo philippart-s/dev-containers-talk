@@ -20,8 +20,7 @@
 		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
 			"jdkDistro": "tem",
 			"jdkVersion": "25-tem"
-		},
-		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {}
+		}
 	},
 
 	// Mandatory to be allow the JBang VSCode extention to run JBang
@@ -40,7 +39,7 @@
 					}
 				]
 			},
-			"extensions": ["jbangdev.jbang-vscode"]
+			"extensions": ["jbangdev.jbang-vscode", "vscjava.vscode-java-pack"]
 		}
 	}
 }

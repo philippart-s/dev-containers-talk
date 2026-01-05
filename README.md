@@ -5,8 +5,11 @@
 ## 📦 Talk resources 📦
   - open the 12 VSCode projects with [automatic-vscode-opening](./bin/automatic-vscode-opening.sh) script
   - open in Firefox:
-    - https://github.com/devcontainers/template-starter
     - https://github.com/devcontainers/feature-starter
+    - https://github.com/philippart-s/feature-slidesk-talk
+    - https://github.com/devcontainers/template-starter
+    - https://github.com/philippart-s/dev-containers-template-talk
+  - open a bash (to show that Java is not installed)    
 
 ## 🎉 Init Dev Containers 🎉
 
@@ -117,7 +120,7 @@
 		}
 ```
 - add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
-- build and push image: `devcontainer build --workspace-folder . --push false --image-name wilda/devcontainer-base-image-talk:1.0.0`
+- build and push image: `devcontainer build --workspace-folder . --push false --image-name wilda/devcontainer-base-image-talk:1.1.0`
 
 ### 🪾 step-11 🪾
 

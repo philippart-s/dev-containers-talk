@@ -21,7 +21,6 @@
 			"jdkDistro": "tem",
 			"jdkVersion": "25-tem"
 		},
-		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {},
 		"ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
 			"version": "latest",
 			"nodeVersion": "latest"
@@ -45,7 +44,7 @@
 					}
 				]
 			},
-			"extensions": ["jbangdev.jbang-vscode"]
+			"extensions": ["jbangdev.jbang-vscode", "vscjava.vscode-java-pack"]
 		}
 	}
 }

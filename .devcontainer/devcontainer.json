@@ -2,5 +2,5 @@
 
   // Dev Container to do Java coding
 	"name": "Java Coding",
-	"image": "wilda/devcontainer-base-image-talk:1.1.0"
+	"image": "wilda/devcontainer-base-image-talk:1.2.0"
 }

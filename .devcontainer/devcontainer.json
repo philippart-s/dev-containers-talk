@@ -25,7 +25,7 @@
 		}
 	},
 
-	// Mandatory to be allow the JBang VSCode extention to run JBang
+	// Mandatory to be allow the JBang VSCode extension to run JBang
 	"remoteEnv": {
   	"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"
 	},

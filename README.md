@@ -25,6 +25,7 @@
   - `java --version`
   - `mvn --version`
   - test with "Hello, World" app: `01-java-hello-world`
+  - display ubuntu version: `cat /etc/os-release`
 
 ## ⚙️ Customize devcontainer.json ⚙️
 
@@ -120,10 +121,10 @@
 		}
 ```
 - add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
-- build and push image: `devcontainer build --workspace-folder . --push false --image-name wilda/devcontainer-base-image-talk:1.1.0`
+- build and push image: `devcontainer build --workspace-folder . --push false --image-name wilda/devcontainer-base-image-talk:1.2.0`
 
 ### 🪾 step-11 🪾
 
-- update the `devcontainer.json` file to use dev container image: `"image": "wilda/devcontainer-base-image-talk:1.1.0"`
+- update the `devcontainer.json` file to use dev container image: `"image": "wilda/devcontainer-base-image-talk:1.2.0"`
 
 ## 🗑️ Clean Resources 🗑️ 

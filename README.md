@@ -31,9 +31,8 @@
 
 ### 🪾 step-02 🪾
 - use Dev Container `base` image
-- ~~add bat: `xx-add-bat`~~
 - add java with
-  - Maven 3.9.11
+  - Maven 3.9.14
   - Java 25
 - JBang with SDKMan
 - Set JBang in the path (to be accessible by the extension)

@@ -8,7 +8,7 @@
 		"ghcr.io/jsburckhardt/devcontainer-features/bat:1": {},
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
-			"mavenVersion": "3.9.11",
+			"mavenVersion": "3.9.14",
       "version": "25",
       "jdkDistro": "tem"
     },

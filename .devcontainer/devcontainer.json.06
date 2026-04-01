@@ -3,7 +3,7 @@
   // Dev Container to do Java coding
 	"name": "Java Coding",
 	//XX-custom-image
-	"image": "wilda/dev-container-talk:1.0.0",
+	"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0",
 
 	// Executed commands after container creation
 	"postCreateCommand": {
@@ -14,7 +14,7 @@
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
-			"mavenVersion": "3.9.11",
+			"mavenVersion": "3.9.14",
       "version": "25",
       "jdkDistro": "tem"
     },

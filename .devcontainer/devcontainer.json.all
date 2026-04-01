@@ -5,7 +5,7 @@
 	/*"build": {
 		"dockerfile": "Dockerfile"
 	},*/
-	//"image": "wilda/dev-container-talk:1.0.0",
+	//"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0",
 	"image": "wilda/devcontainer-image-talk:1.0.0",
 	//"dockerComposeFile": "docker-compose.yml",
 	//"service": "devcontainer",
@@ -22,7 +22,7 @@
 		"ghcr.io/jsburckhardt/devcontainer-features/bat:1": {},
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
-			"mavenVersion": "3.9.11",
+			"mavenVersion": "3.9.14",
       "version": "25",
       "jdkDistro": "tem"
     },

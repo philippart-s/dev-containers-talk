@@ -22,7 +22,7 @@
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
-			"mavenVersion": "3.9.11",
+			"mavenVersion": "3.9.14",
       "version": "25",
       "jdkDistro": "tem"
     },
@@ -35,7 +35,7 @@
 		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
 	},
 
-	// Mandatory to be allow the JBang VSCode extention to run JBang
+	// Mandatory to be allow the JBang VSCode extension to run JBang
 	"remoteEnv": {
   	"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"
 	},

@@ -25,3 +25,4 @@
   - `java --version`
   - `mvn --version`
   - test with "Hello, World" app: `01-java-hello-world`
+  - display ubuntu version: cat /etc/os-release

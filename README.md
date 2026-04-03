@@ -25,14 +25,14 @@
   - `java --version`
   - `mvn --version`
   - test with "Hello, World" app: `01-java-hello-world`
-
+  - display ubuntu version: `cat /etc/os-release`
+  
 ## ⚙️ Customize devcontainer.json ⚙️
 
 ### 🪾 step-02 🪾
 - use Dev Container `base` image
-- ~~add bat: `xx-add-bat`~~
 - add java with
-  - Maven 3.9.11
+  - Maven 3.9.14
   - Java 25
 - JBang with SDKMan
 - Set JBang in the path (to be accessible by the extension)
@@ -111,7 +111,7 @@
 
 ### 🪾 step-10 🪾
 
-- update the `devcontainer.json` file to use custom image: `"image": "wilda/dev-container-talk:1.0.0"`
+- update the `devcontainer.json` file to use custom image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0"`
 - add the dev container CLI:
 ```json
 "ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
@@ -120,4 +120,4 @@
 		}
 ```
 - add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
-- build and push image: `devcontainer build --workspace-folder . --push false --image-name wilda/devcontainer-base-image-talk:1.2.0`
+- build and push image: `devcontainer build --workspace-folder . --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.2.0`

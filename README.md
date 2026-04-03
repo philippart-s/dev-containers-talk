@@ -25,12 +25,12 @@
   - `java --version`
   - `mvn --version`
   - test with "Hello, World" app: `01-java-hello-world`
+  - display ubuntu version: cat /etc/os-release
 
 ## ⚙️ Customize devcontainer.json ⚙️
 
 ### 🪾 step-02 🪾
 - use Dev Container `base` image
-- ~~add bat: `xx-add-bat`~~
 - add java with
   - Maven 3.9.11
   - Java 25

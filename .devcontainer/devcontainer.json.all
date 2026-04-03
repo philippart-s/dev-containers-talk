@@ -6,7 +6,7 @@
 		"dockerfile": "Dockerfile"
 	},*/
 	//"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0",
-	"image": "wilda/devcontainer-image-talk:1.0.0",
+	"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-image-talk:1.0.0",
 	//"dockerComposeFile": "docker-compose.yml",
 	//"service": "devcontainer",
 	//"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",

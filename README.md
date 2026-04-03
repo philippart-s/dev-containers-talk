@@ -79,7 +79,7 @@
 		"dockerfile": "Dockerfile"
 	},
 ```
-- create and push the image: `docker buildx build --platform="linux/amd64"  -t 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0 . --push`
+- create and push the image: `docker buildx build --platform="linux/arm64"  -t 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0 . --push`
 
 ### 🪾 step-07 🪾
 
@@ -111,7 +111,7 @@
 
 ### 🪾 step-10 🪾
 
-- update the `devcontainer.json` file to use custom image: `"image": "wilda/dev-container-talk:1.0.0"`
+- update the `devcontainer.json` file to use custom image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0"`
 - add the dev container CLI:
 ```json
 "ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
@@ -120,10 +120,10 @@
 		}
 ```
 - add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
-- build and push image: `devcontainer build --workspace-folder . --push false --image-name wilda/devcontainer-base-image-talk:1.2.0`
+- build and push image: `devcontainer build --workspace-folder . --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.2.0`
 
 ### 🪾 step-11 🪾
 
-- update the `devcontainer.json` file to use dev container image: `"image": "wilda/devcontainer-base-image-talk:1.2.0"`
+- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.2.0"`
 
 ## 🗑️ Clean Resources 🗑️ 

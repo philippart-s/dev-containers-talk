@@ -3,5 +3,5 @@
   // Dev Container to do Java coding
 	"name": "Java Coding",
 	//XX-base-image
-	"image": "wilda/devcontainer-base-image-talk:1.1.0",
+	"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.1.0",
 }

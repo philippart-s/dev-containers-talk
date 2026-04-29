@@ -14,12 +14,12 @@
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
 			"mavenVersion": "3.9.14",
-      "version": "25",
+      "version": "26",
       "jdkDistro": "tem"
     },
 		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
 			"jdkDistro": "tem",
-			"jdkVersion": "25-tem"
+			"jdkVersion": "26-tem"
 		},
 		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {}
 	},
@@ -35,7 +35,7 @@
 			"settings": {
 				"java.configuration.runtimes": [
 					{
-						"name": "JavaSE-25",
+						"name": "JavaSE-26",
 						"path": "/usr/local/sdkman/candidates/java/current/"
 					}
 				]

@@ -2,5 +2,5 @@
 
   // Dev Container to do Java coding
 	"name": "Java Coding",
-	"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.2.0"
+	"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.3.0"
 }

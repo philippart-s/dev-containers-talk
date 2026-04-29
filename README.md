@@ -120,10 +120,10 @@
 		}
 ```
 - add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
-- build and push image: `devcontainer build --workspace-folder . --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.2.0`
+- build and push image: `devcontainer build --workspace-folder . --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.3.0`
 
 ### 🪾 step-11 🪾
 
-- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.2.0"`
+- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.3.0"`
 
 ## 🗑️ Clean Resources 🗑️ 

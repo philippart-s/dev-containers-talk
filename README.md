@@ -79,4 +79,4 @@
 		"dockerfile": "Dockerfile"
 	},
 ```
-- create and push the image: `docker build -t wilda/dev-container-talk:1.0.0 .` && `docker push wilda/dev-container-talk:1.0.0`
+- create and push the image: `docker build -t 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0 .` && `docker push 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0`

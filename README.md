@@ -41,11 +41,11 @@
   - JBang extension
 - Test Jbang: `jbang hello@jbangdev world`
 
-## 🧰 Add custom tool: SliDesk and Javelit 🧰
+## 🧰 Add custom tool: OVHcloud CLI and Javelit 🧰
 
 ### 🪾 step-03 🪾
-- create the installation script `install-slideck.sh`
-- add post command configuration `"SliDesk": "./.devcontainer/install-slidesk.sh"` && `"Javelit": "jbang app setup && jbang app install javelit@javelit"` in `postCreateCommand` configuration
+- create the installation script `install-ovh-cli.sh`
+- add post command configuration `"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh"` && `"Javelit": "jbang app setup && jbang app install javelit@javelit"` in `postCreateCommand` configuration
 - add Javelit to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
-- test SliDesk: `slidesk --version`
+- test OVHcloud CLI: `ovhcloud version`
 - test Javelit: `javelit hello`

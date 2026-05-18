@@ -6,7 +6,7 @@
 
 	// Executed commands after container creation
 	"postCreateCommand": {
-		"SliDesk": "./.devcontainer/install-slidesk.sh",
+		"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh",
 		"Javelit": "jbang app setup && jbang app install javelit@javelit"
 	},
 

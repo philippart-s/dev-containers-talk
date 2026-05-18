@@ -1,8 +1,8 @@
 {
-  "name": "SliDesk",
-  "id": "slidesk",
+  "name": "OVHcloud CLI",
+  "id": "ovhcloud-cli",
   "version": "1.0.0",
-  "description": "A feature to install SliDesk",
+  "description": "A feature to install OVHcloud CLI",
   "options": {
     "distribution": {
       "type": "string",

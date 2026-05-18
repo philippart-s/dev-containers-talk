@@ -44,18 +44,18 @@
 ## 🧰 Add custom tool: SliDesk and Javelit 🧰
 
 ### 🪾 step-03 🪾
-- create the installation script `install-slideck.sh`
-- add post command configuration `"SliDesk": "./.devcontainer/install-slidesk.sh"` && `"Javelit": "jbang app setup && jbang app install javelit@javelit"` in `postCreateCommand` configuration
+- create the installation script `install-ovh-cli.sh`
+- add post command configuration `"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh"` && `"Javelit": "jbang app setup && jbang app install javelit@javelit"` in `postCreateCommand` configuration
 - add Javelit to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
-- test SliDesk: `slidesk --version`
+- test OVHcloud CLI: `ovhcloud version`
 - test Javelit: `javelit hello`
 
 ## 🧩 Create a feature 🧩
 
 ### 🪾 step-04 🪾
 
-- create the `slidesk` folder in the `.devcontainer` folder
-- create the `devcontainer-features.json` file in the `.devcontainer/slidesk` folder
+- create the `ovhcloud-cli` folder in the `.devcontainer` folder
+- create the `devcontainer-features.json` file in the `.devcontainer/ovhcloud-cli` folder
 - add `install.sh` file
 - update the `devcontainer-features.json` file 
 - update the `devcontainer.json` file to use the new feature

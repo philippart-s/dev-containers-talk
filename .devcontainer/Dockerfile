@@ -1,4 +1,4 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu
 
-ADD install-slidesk.sh .
-RUN ./install-slidesk.sh
+ADD ./install-ovhcloud-cli.sh /install-ovhcloud-cli.sh
+RUN ./install-ovhcloud-cli.sh

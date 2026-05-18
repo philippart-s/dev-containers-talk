@@ -21,8 +21,8 @@
 			"jdkDistro": "tem",
 			"jdkVersion": "25-tem"
 		},
-		//"./slidesk": {},
-		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {}
+		//"./ovhcloud-cli": {},
+		"ghcr.io/philippart-s/feature-dev-containers-talk/ovhcloud-cli:1.0.0": {}
 	},
 
 	// Mandatory to be allow the JBang VSCode extension to run JBang

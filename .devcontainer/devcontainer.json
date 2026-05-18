@@ -2,7 +2,7 @@
 
   // Dev Container to do Java coding
 	"name": "Java Coding",
-	"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0",
+	"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0",
 
 	// Executed commands after container creation
 	"postCreateCommand": {

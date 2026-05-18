@@ -111,7 +111,7 @@
 
 ### 🪾 step-10 🪾
 
-- update the `devcontainer.json` file to use custom image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0"`
+- update the `devcontainer.json` file to use custom image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0"`
 - add the dev container CLI:
 ```json
 "ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {

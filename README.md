@@ -79,8 +79,8 @@
 		"dockerfile": "Dockerfile"
 	},
 ```
-- create and push the image: `docker buildx build --platform="linux/arm64"  -t 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0 . --push`
+- create and push the image: `docker buildx build --platform="linux/arm64"  -t 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0 . --push`
 
 ### 🪾 step-07 🪾
 
-- update the `devcontainer.json` file: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1:0",`
+- update the `devcontainer.json` file: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0",`

@@ -5,4 +5,4 @@ for i in $(seq -w 0 11); do
 done
 
 code ../../dev-containers-template-talk
-code ../../feature-slidesk-talk
+code ../../feature-dev-containers-talk

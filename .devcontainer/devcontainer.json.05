@@ -1,23 +1,28 @@
-{ // 05-🪄 Create & use template 🪄
+{	// 03-🧩 Create a feature 🧩
 
-	"name": "Default template for Java coding",
-	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+  // Dev Container to do Java coding
+	"name": "Java Coding",
+	"image": "mcr.microsoft.com/devcontainers/base:noble",
 
-	// 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
-	 "features": {
-		"ghcr.io/jsburckhardt/devcontainer-features/bat:1": {},
+	// Executed commands after container creation
+	"postCreateCommand": {
+		"Javelit": "jbang app setup && jbang app install javelit@javelit"
+	},
+
+ 	// Features added to the image
+	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
 			"mavenVersion": "3.9.14",
-      "version": "25",
+      "version": "26",
       "jdkDistro": "tem"
     },
 		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
 			"jdkDistro": "tem",
-			"jdkVersion": "25-tem"
+			"jdkVersion": "26-tem"
 		},
-		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {}
-	 },
+		"ghcr.io/philippart-s/feature-dev-containers-talk/ovhcloud-cli:1.0.0": {}
+	},
 
 	// Mandatory to be allow the JBang VSCode extension to run JBang
 	"remoteEnv": {
@@ -30,7 +35,7 @@
 			"settings": {
 				"java.configuration.runtimes": [
 					{
-						"name": "JavaSE-25",
+						"name": "JavaSE-26",
 						"path": "/usr/local/sdkman/candidates/java/current/"
 					}
 				]

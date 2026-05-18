@@ -7,7 +7,7 @@
 	// 	"dockerfile": "Dockerfile"
 	// },
 	//XX-custom-image
-	//"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0",
+	//"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0",
 	//XX-docker-compose
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "devcontainer",
@@ -30,8 +30,6 @@
 			"jdkDistro": "tem",
 			"jdkVersion": "25-tem"
 		},
-		"ghcr.io/philippart-s/feature-slidesk-talk/slidesk:1.0.0": {},
-		//XX-add-pg-client-feature
 		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
 	},
 
@@ -40,13 +38,13 @@
   	"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"
 	},
 
-	// IDE customization
+	/// IDE customization
 	"customizations": {
 		"vscode": {
 			"settings": {
 				"java.configuration.runtimes": [
 					{
-						"name": "JavaSE-25",
+						"name": "JavaSE-26",
 						"path": "/usr/local/sdkman/candidates/java/current/"
 					}
 				]

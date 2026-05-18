@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   devcontainer:
-    image: 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0
+    image: 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0
     volumes:
       - ../..:/workspaces:cached
     command: sleep infinity

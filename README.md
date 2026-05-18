@@ -44,25 +44,25 @@
 ## 🧰 Add custom tool: SliDesk and Javelit 🧰
 
 ### 🪾 step-03 🪾
-- create the installation script `install-slideck.sh`
-- add post command configuration `"SliDesk": "./.devcontainer/install-slidesk.sh"` && `"Javelit": "jbang app setup && jbang app install javelit@javelit"` in `postCreateCommand` configuration
+- create the installation script `install-ovh-cli.sh`
+- add post command configuration `"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh"` && `"Javelit": "jbang app setup && jbang app install javelit@javelit"` in `postCreateCommand` configuration
 - add Javelit to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
-- test SliDesk: `slidesk --version`
+- test OVHcloud CLI: `ovhcloud version`
 - test Javelit: `javelit hello`
 
 ## 🧩 Create a feature 🧩
 
 ### 🪾 step-04 🪾
 
-- create the `slidesk` folder in the `.devcontainer` folder
-- create the `devcontainer-features.json` file in the `.devcontainer/slidesk` folder
+- create the `ovhcloud-cli` folder in the `.devcontainer` folder
+- create the `devcontainer-features.json` file in the `.devcontainer/ovhcloud-cli` folder
 - add `install.sh` file
 - update the `devcontainer-features.json` file 
 - update the `devcontainer.json` file to use the new feature
 
 ### 🪾 step-05 🪾
 
-- create the feature-slidesk-talk project, fork from https://github.com/devcontainers/feature-starter
+- create the feature-dev-containers-talk project, fork from https://github.com/devcontainers/feature-starter
 - Allow GitHub Actions to create and approve pull requests should be enabled in the repository's `Settings > Actions > General > Workflow` permissions for auto generation of src/<feature>/README.md per Feature
 - run manually the `release` workflow
 - set the feature package public in the GH repository
@@ -79,11 +79,11 @@
 		"dockerfile": "Dockerfile"
 	},
 ```
-- create and push the image: `docker buildx build --platform="linux/arm64"  -t 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0 . --push`
+- create and push the image: `docker build -t 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0 .` && `docker push 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0`
 
 ### 🪾 step-07 🪾
 
-- update the `devcontainer.json` file: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0",`
+- update the `devcontainer.json` file: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0",`
 
 ### 🪾 step-08 🪾
 
@@ -111,7 +111,7 @@
 
 ### 🪾 step-10 🪾
 
-- update the `devcontainer.json` file to use custom image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.0.0"`
+- update the `devcontainer.json` file to use custom image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0"`
 - add the dev container CLI:
 ```json
 "ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
@@ -120,10 +120,10 @@
 		}
 ```
 - add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
-- build and push image: `devcontainer build --workspace-folder . --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.3.0`
+- build and push image: `devcontainer build --workspace-folder . --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.4.0`
 
 ### 🪾 step-11 🪾
 
-- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.3.0"`
+- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.4.0"`
 
 ## 🗑️ Clean Resources 🗑️ 

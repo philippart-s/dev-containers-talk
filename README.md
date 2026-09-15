@@ -45,7 +45,7 @@
 
 ### 🪾 step-03 🪾
 - create the installation script `install-ovh-cli.sh`
-- add post command configuration `"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh"` && `"Javelit": "jbang app setup && jbang app install javelit@javelit"` in `postCreateCommand` configuration
-- add Javelit to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
+- add post command configuration `"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh"` && `"Httpd": "jbang app setup && jbang app install httpd@jbangdev"` in `postCreateCommand` configuration
+- add httpd to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
 - test OVHcloud CLI: `ovhcloud version`
-- test Javelit: `javelit hello`
+- test httpd: `httpd`

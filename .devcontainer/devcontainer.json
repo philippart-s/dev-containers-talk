@@ -6,7 +6,7 @@
 
 	// Executed commands after container creation
 	"postCreateCommand": {
-		"Javelit": "jbang app setup && jbang app install javelit@javelit"
+		"Httpd": "jbang app setup && jbang app install httpd@jbangdev"
 	},
 
  	// Features added to the image

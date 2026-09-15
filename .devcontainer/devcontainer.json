@@ -7,7 +7,7 @@
 	// Executed commands after container creation
 	"postCreateCommand": {
 		"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh",
-		"Javelit": "jbang app setup && jbang app install javelit@javelit"
+		"Httpd": "jbang app setup && jbang app install httpd@jbangdev"
 	},
 
  	// Features added to the image

@@ -45,10 +45,10 @@
 
 ### 🪾 step-03 🪾
 - create the installation script `install-ovh-cli.sh`
-- add post command configuration `"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh"` && `"Javelit": "jbang app setup && jbang app install javelit@javelit"` in `postCreateCommand` configuration
-- add Javelit to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
+- add post command configuration `"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh"` && `"Httpd": "jbang app setup && jbang app install httpd@jbangdev"` in `postCreateCommand` configuration
+- add httpd to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
 - test OVHcloud CLI: `ovhcloud version`
-- test Javelit: `javelit hello`
+- test httpd: `httpd`
 
 ## 🧩 Create a feature 🧩
 
@@ -120,10 +120,10 @@
 		}
 ```
 - add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
-- build and push image: `devcontainer build --workspace-folder . --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.4.0`
+- build and push image: `devcontainer build --workspace-folder . --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.5.0`
 
 ### 🪾 step-11 🪾
 
-- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.4.0"`
+- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.5.0"`
 
 ## 🗑️ Clean Resources 🗑️ 

@@ -22,7 +22,7 @@
 			"jdkVersion": "25-tem"
 		},
 		//"./ovhcloud-cli": {},
-		"ghcr.io/philippart-s/feature-dev-containers-talk/ovhcloud-cli:1.0.0": {}
+		"ghcr.io/philippart-s/feature-dev-containers-talk/ovhcloud-cli:1.1.0": {}
 	},
 
 	// Mandatory to be allow the JBang VSCode extension to run JBang

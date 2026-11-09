@@ -2,7 +2,7 @@
 
   // Dev Container to do Java coding
 	"name": "Java Coding",
-	"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0",
+	"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.0",
 
 	// Executed commands after container creation
 	"postCreateCommand": {
@@ -13,13 +13,13 @@
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
-			"mavenVersion": "3.9.14",
-      "version": "26",
+			"mavenVersion": "3.10.0",
+      "version": "27",
       "jdkDistro": "tem"
     },
 		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
-			"jdkDistro": "tem",
-			"jdkVersion": "26-tem"
+			"version": "0.143.0",
+			"jdkVersion": "none"
 		}
 	},
 
@@ -34,7 +34,7 @@
 			"settings": {
 				"java.configuration.runtimes": [
 					{
-						"name": "JavaSE-26",
+						"name": "JavaSE-27",
 						"path": "/usr/local/sdkman/candidates/java/current/"
 					}
 				]

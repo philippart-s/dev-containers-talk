@@ -2,14 +2,31 @@
 
 ## 🏗️ Dev Containers installation 🏗️
 
+- Container engine: Rancher Desktop (VM `vz`, engine `moby`, mount type `virtiofs`, admin access disabled)
+- Docker context: `docker context use rancher-desktop`
+- Registry: `docker login 95y036e0.gra7.container-registry.ovh.net`
+
+## 🔥 Before the talk 🔥
+
+- Warm the build cache, for each branch with a `.devcontainer` folder (step-01 to step-08, step-10, step-11):
+  `git switch step-NN && npx @devcontainers/cli build --workspace-folder .`
+- Do one full rehearsal in VS Code (`git switch` + `Rebuild Container`) to fill the `vscode` volume (VS Code server and extensions)
+- step-09: apply the template once, then `git restore . && git clean -fd`
+- Do not run `docker system prune` / `docker builder prune` or a Rancher Desktop factory reset after the rehearsal
+- On D-day: start Rancher Desktop before going on stage
+
 ## 📦 Talk resources 📦
-  - open the 12 VSCode projects with [automatic-vscode-opening](./bin/automatic-vscode-opening.sh) script
+  - one clone, one VS Code window: for each step, `git switch step-NN` then `SHIFT + CMD + P`: `Dev Containers: Rebuild Container`
+    (`Reopen in Container` would reuse the container of the previous step: same folder, same config path)
   - open in Firefox:
     - https://github.com/devcontainers/feature-starter
     - https://github.com/philippart-s/feature-slidesk-talk
     - https://github.com/devcontainers/template-starter
     - https://github.com/philippart-s/dev-containers-template-talk
-  - open a bash (to show that Java is not installed)    
+  - open a terminal on the host to compare with the containers:
+    - `java --version` → Java 27 (host) vs Java 25 (step-01) / Java 26 (step-02 and later)
+    - `ovhcloud version` → latest (host) vs v0.11.0 (containers)
+    - `docker context ls` → Rancher Desktop, not Docker Desktop
 
 ## 🎉 Init Dev Containers 🎉
 
@@ -26,7 +43,7 @@
   - `mvn --version`
   - test with "Hello, World" app: `01-java-hello-world`
   - display ubuntu version: `cat /etc/os-release`
-  
+
 ## ⚙️ Customize devcontainer.json ⚙️
 
 ### 🪾 step-02 🪾
@@ -45,10 +62,10 @@
 
 ### 🪾 step-03 🪾
 - create the installation script `install-ovh-cli.sh`
-- add post command configuration `"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh"` && `"Javelit": "jbang app setup && jbang app install javelit@javelit"` in `postCreateCommand` configuration
-- add Javelit to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
+- add post command configuration `"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh"` && `"Httpd": "jbang app setup && jbang app install httpd@jbangdev"` in `postCreateCommand` configuration
+- add httpd to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
 - test OVHcloud CLI: `ovhcloud version`
-- test Javelit: `javelit hello`
+- test httpd: `httpd`
 
 ## 🧩 Create a feature 🧩
 
@@ -120,4 +137,10 @@
 		}
 ```
 - add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
-- build and push image: `devcontainer build --workspace-folder . --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.4.0`
+- build and push image: `devcontainer build --workspace-folder . --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.5.0`
+
+### 🪾 step-11 🪾
+
+- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.5.0"`
+
+## 🗑️ Clean Resources 🗑️ 

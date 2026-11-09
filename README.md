@@ -11,9 +11,12 @@
 - Warm the build cache, for each branch with a `.devcontainer` folder (step-01 to step-08, step-10, step-11):
   `git switch step-NN && npx @devcontainers/cli build --workspace-folder .`
 - Do one full rehearsal in VS Code (`git switch` + `Rebuild Container`) to fill the `vscode` volume (VS Code server and extensions)
+- step-08: pre-pull the database image: `docker pull postgres:18`
 - step-09: apply the template once, then `git restore . && git clean -fd`
+- step-10: run the image build once inside the step-10 container (the `dind-var-lib-docker-*` volume keeps its cache)
 - Do not run `docker system prune` / `docker builder prune` or a Rancher Desktop factory reset after the rehearsal
 - On D-day: start Rancher Desktop before going on stage
+- After step-08: stop the database container (`docker ps`, then `docker stop <name>`), `Rebuild Container` on another step does not stop it
 
 ## 📦 Talk resources 📦
   - one clone, one VS Code window: for each step, `git switch step-NN` then `SHIFT + CMD + P`: `Dev Containers: Rebuild Container`
@@ -24,7 +27,7 @@
     - https://github.com/devcontainers/template-starter
     - https://github.com/philippart-s/dev-containers-template-talk
   - open a terminal on the host to compare with the containers:
-    - `java --version` → Java 27 (host) vs Java 25 (step-01) / Java 26 (step-02 and later)
+    - `java --version` → Java 27 (host) vs Java 25 (step-00)
     - `ovhcloud version` → latest (host) vs v0.16.0 (containers)
     - `docker context ls` → Rancher Desktop, not Docker Desktop
 
@@ -33,28 +36,31 @@
 ### 🪾 step-00 🪾
 - Create the Dev Container configuration file: `SHIFT + CMD + P`: `Dev Containers: Add Dev Containers configuration Files...`
   - Choose `Java devcontainers`
-  - additional options: `21-bullseye`
+  - additional options: `25-trixie`
   - install Maven
-
-### 🪾 step-01 🪾
-- Open the newly created Dev Containers: `SHIFT + CMD + P`: `Dev Containers: Open Container Configuration File...`
+- Click `Reopen in Container` (or `SHIFT + CMD + P`: `Dev Containers: Reopen in Container`)
+- Open the newly created configuration: `SHIFT + CMD + P`: `Dev Containers: Open Container Configuration File...`
 - Test Java configuration:
-  - `java --version`
+  - `java --version` → Java 25 (Java 27 on the host)
   - `mvn --version`
   - test with "Hello, World" app: `01-java-hello-world`
   - display ubuntu version: `cat /etc/os-release`
+- Remove the generated configuration before switching to step-02: `rm -rf .devcontainer`
+
+### 🪾 step-01 🪾
+- Result of step-00 (generated configuration), kept for reference: no live action
 
 ## ⚙️ Customize devcontainer.json ⚙️
 
 ### 🪾 step-02 🪾
 - use Dev Container `base` image
 - add java with
-  - Maven 3.9.14
-  - Java 25
-- JBang with SDKMan
+  - Maven 3.10.0
+  - Java 27
+- JBang 0.143.0 with SDKMan
 - Set JBang in the path (to be accessible by the extension)
 - Configure VSCode:
-  - Java 25 path
+  - Java 27 path
   - JBang extension
 - Test Jbang: `jbang hello@jbangdev world`
 
@@ -96,11 +102,11 @@
 		"dockerfile": "Dockerfile"
 	},
 ```
-- create and push the image: `docker build -t 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0 .` && `docker push 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0`
+- create and push the image: `docker build -t 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.0 .` && `docker push 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.0`
 
 ### 🪾 step-07 🪾
 
-- update the `devcontainer.json` file: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0",`
+- update the `devcontainer.json` file: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.0",`
 
 ### 🪾 step-08 🪾
 
@@ -128,7 +134,7 @@
 
 ### 🪾 step-10 🪾
 
-- update the `devcontainer.json` file to use custom image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0"`
+- update the `devcontainer.json` file to use custom image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.0"`
 - add the dev container CLI:
 ```json
 "ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
@@ -137,10 +143,11 @@
 		}
 ```
 - add Docker in Docker: `"ghcr.io/devcontainers/features/docker-in-docker:2": {}`
-- build and push image: `devcontainer build --workspace-folder . --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.5.0`
+- create the image configuration `.devcontainer/image/devcontainer.json`: same tools without Docker in Docker and the dev container CLI
+- build the image: `devcontainer build --workspace-folder . --config .devcontainer/image/devcontainer.json --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.6.0`
 
 ### 🪾 step-11 🪾
 
-- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.5.0"`
+- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.6.0"`
 
 ## 🗑️ Clean Resources 🗑️ 

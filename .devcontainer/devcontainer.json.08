@@ -1,0 +1,48 @@
+{	// 04-🐳 Use custom images 🐳
+
+  // Dev Container to do Java coding
+	"name": "Java Coding",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "devcontainer",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+	// Executed commands after container creation
+	"postCreateCommand": {
+		"Httpd": "jbang app setup && jbang app install httpd@jbangdev"
+	},
+
+ 	// Features added to the image
+	"features": {
+		"ghcr.io/devcontainers/features/java:1": {
+      "installMaven": true,
+			"mavenVersion": "3.10.0",
+      "version": "27",
+      "jdkDistro": "tem"
+    },
+		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
+			"version": "0.143.0",
+			"jdkVersion": "none"
+		},
+		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
+	},
+
+	// Mandatory to be allow the JBang VSCode extension to run JBang
+	"remoteEnv": {
+  	"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"
+	},
+
+	// IDE customization
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"java.configuration.runtimes": [
+					{
+						"name": "JavaSE-27",
+						"path": "/usr/local/sdkman/candidates/java/current/"
+					}
+				]
+			},
+			"extensions": ["jbangdev.jbang-vscode", "vscjava.vscode-java-pack"]
+		}
+	}
+}

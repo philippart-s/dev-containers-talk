@@ -1,12 +1,14 @@
-{	// 06-⚡️ Optimization ⚡️
+{	// 04-🐳 Use custom images 🐳
 
   // Dev Container to do Java coding
 	"name": "Java Coding",
-	"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.0",
+	 "build": {
+	 	"dockerfile": "Dockerfile"
+	 },
 
 	// Executed commands after container creation
 	"postCreateCommand": {
-		"Javelit": "jbang app setup && jbang app install javelit@javelit"
+		"Httpd": "jbang app setup && jbang app install httpd@jbangdev"
 	},
 
  	// Features added to the image
@@ -20,12 +22,7 @@
 		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
 			"version": "0.143.0",
 			"jdkVersion": "none"
-		},
-		"ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
-			"version": "latest",
-			"nodeVersion": "latest"
-		},
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+		}
 	},
 
 	// Mandatory to be allow the JBang VSCode extension to run JBang

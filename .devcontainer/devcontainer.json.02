@@ -1,16 +1,9 @@
-{	// 02-🧰 Add custom tool: SliDesk and Javelit 🧰
-
+{ // 01-⚙️ Customize devcontainer.json ⚙️
   // Dev Container to do Java coding
 	"name": "Java Coding",
 	"image": "mcr.microsoft.com/devcontainers/base:noble",
 
-	// Executed commands after container creation
-	"postCreateCommand": {
-		"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh",
-		"Javelit": "jbang app setup && jbang app install javelit@javelit"
-	},
-
- 	// Features added to the image
+	// Features added to the image
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
@@ -22,11 +15,6 @@
 			"version": "0.143.0",
 			"jdkVersion": "none"
 		}
-	},
-
-	// Mandatory to be allow the JBang VSCode extension to run JBang
-	"remoteEnv": {
-  	"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"
 	},
 
 	// IDE customization

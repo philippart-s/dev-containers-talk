@@ -1,4 +1,4 @@
-{	// 03-🧩 Create a feature 🧩
+{	// 02-🧰 Add custom tool: SliDesk and Javelit 🧰
 
   // Dev Container to do Java coding
 	"name": "Java Coding",
@@ -6,7 +6,8 @@
 
 	// Executed commands after container creation
 	"postCreateCommand": {
-		"Javelit": "jbang app setup && jbang app install javelit@javelit"
+		"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh",
+		"Httpd": "jbang app setup && jbang app install httpd@jbangdev"
 	},
 
  	// Features added to the image
@@ -14,16 +15,13 @@
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
 			"mavenVersion": "3.10.0",
-      "version": "25",
+      "version": "27",
       "jdkDistro": "tem"
     },
 		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
 			"version": "0.143.0",
-			"jdkDistro": "tem",
-			"jdkVersion": "25-tem"
-		},
-		//"./ovhcloud-cli": {},
-		"ghcr.io/philippart-s/feature-dev-containers-talk/ovhcloud-cli:1.1.0": {}
+			"jdkVersion": "none"
+		}
 	},
 
 	// Mandatory to be allow the JBang VSCode extension to run JBang
@@ -37,7 +35,7 @@
 			"settings": {
 				"java.configuration.runtimes": [
 					{
-						"name": "JavaSE-25",
+						"name": "JavaSE-27",
 						"path": "/usr/local/sdkman/candidates/java/current/"
 					}
 				]

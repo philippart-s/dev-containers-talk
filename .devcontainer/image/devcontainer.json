@@ -1,0 +1,45 @@
+{	// 06-⚡️ Optimization ⚡️: configuration of the image (no build tooling)
+
+  // Dev Container to do Java coding
+	"name": "Java Coding",
+	"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.0",
+
+	// Executed commands after container creation
+	"postCreateCommand": {
+		"Httpd": "jbang app setup && jbang app install httpd@jbangdev"
+	},
+
+ 	// Features added to the image
+	"features": {
+		"ghcr.io/devcontainers/features/java:1": {
+      "installMaven": true,
+			"mavenVersion": "3.10.0",
+      "version": "27",
+      "jdkDistro": "tem"
+    },
+		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
+			"version": "0.143.0",
+			"jdkVersion": "none"
+		}
+	},
+
+	// Mandatory to be allow the JBang VSCode extension to run JBang
+	"remoteEnv": {
+  	"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"
+	},
+
+	// IDE customization
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"java.configuration.runtimes": [
+					{
+						"name": "JavaSE-27",
+						"path": "/usr/local/sdkman/candidates/java/current/"
+					}
+				]
+			},
+			"extensions": ["jbangdev.jbang-vscode", "vscjava.vscode-java-pack"]
+		}
+	}
+}

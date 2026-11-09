@@ -7,7 +7,7 @@
 	// 	"dockerfile": "Dockerfile"
 	// },
 	//XX-custom-image
-	//"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.1.0",
+	//"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.0",
 	//XX-docker-compose
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "devcontainer",
@@ -22,11 +22,12 @@
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
-			"mavenVersion": "3.9.14",
+			"mavenVersion": "3.10.0",
       "version": "25",
       "jdkDistro": "tem"
     },
 		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
+			"version": "0.143.0",
 			"jdkDistro": "tem",
 			"jdkVersion": "25-tem"
 		},
@@ -44,7 +45,7 @@
 			"settings": {
 				"java.configuration.runtimes": [
 					{
-						"name": "JavaSE-26",
+						"name": "JavaSE-27",
 						"path": "/usr/local/sdkman/candidates/java/current/"
 					}
 				]

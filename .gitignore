@@ -27,3 +27,6 @@ replay_pid*
 .env
 # Claude Code local settings
 .claude/settings.local.json
+
+# Dev Containers lockfile
+devcontainer-lock.json

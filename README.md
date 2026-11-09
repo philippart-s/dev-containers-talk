@@ -25,7 +25,7 @@
     - https://github.com/philippart-s/dev-containers-template-talk
   - open a terminal on the host to compare with the containers:
     - `java --version` → Java 27 (host) vs Java 25 (step-01) / Java 26 (step-02 and later)
-    - `ovhcloud version` → latest (host) vs v0.11.0 (containers)
+    - `ovhcloud version` → latest (host) vs v0.16.0 (containers)
     - `docker context ls` → Rancher Desktop, not Docker Desktop
 
 ## 🎉 Init Dev Containers 🎉

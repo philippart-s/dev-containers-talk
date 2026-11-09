@@ -18,6 +18,12 @@
 - On D-day: start Rancher Desktop before going on stage
 - After step-08: stop the database container (`docker ps`, then `docker stop <name>`), `Rebuild Container` on another step does not stop it
 
+## 🧹 Between talks 🧹
+
+- Recover disk space from `main`: `./bin/clean-talk.sh` (`--dry-run` only lists, `--all` also removes the `vscode` volume)
+  - removes the demo containers, the step-08 compose network, the talk images, the old step-10 Docker in Docker volume and the whole Docker build cache (other projects included)
+  - run `./bin/prepare-talk.sh` again before the next talk
+
 ## 📦 Talk resources 📦
   - one clone, one VS Code window: for each step, `git switch step-NN` then `SHIFT + CMD + P`: `Dev Containers: Rebuild Container`
     (`Reopen in Container` would reuse the container of the previous step: same folder, same config path)

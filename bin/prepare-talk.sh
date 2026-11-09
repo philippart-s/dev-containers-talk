@@ -139,7 +139,6 @@ if $FULL; then
   echo
   echo "  Still to do by hand:"
   echo "   - one rehearsal in VS Code (git switch + Rebuild Container) to install the VS Code server and extensions"
-  echo "   - step-10: run the image build once inside the step-10 container (Docker in Docker cache)"
 fi
 if [ ${#FAILURES[@]} -gt 0 ]; then
   echo

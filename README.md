@@ -8,11 +8,12 @@
 
 ## 🔥 Before the talk 🔥
 
-- Warm the build cache, for each branch with a `.devcontainer` folder (step-01 to step-08, step-10, step-11):
-  `git switch step-NN && npx @devcontainers/cli build --workspace-folder .`
+- Prepare the machine from `main` (about 10 minutes): `./bin/prepare-talk.sh`
+  - checks the container engine, warms the Docker build cache of every step and of the step-09 template, pulls `postgres:18`, reports leftover demo containers
+  - the working tree is not touched (each step is exported with `git archive`)
+  - the cache is per step: each set of features builds its own image layers, warming one step does not warm the others
+  - any change to a step configuration (`.devcontainer/`) invalidates the cache of that step: `./bin/prepare-talk.sh step-NN`
 - Do one full rehearsal in VS Code (`git switch` + `Rebuild Container`) to fill the `vscode` volume (VS Code server and extensions)
-- step-08: pre-pull the database image: `docker pull postgres:18`
-- step-09: apply the template once, then `git restore . && git clean -fd`
 - step-10: run the image build once inside the step-10 container (the `dind-var-lib-docker-*` volume keeps its cache)
 - Do not run `docker system prune` / `docker builder prune` or a Rancher Desktop factory reset after the rehearsal
 - On D-day: start Rancher Desktop before going on stage
@@ -102,8 +103,8 @@
 		"dockerfile": "Dockerfile"
 	},
 ```
-- create and push the image: `docker build -t 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.0 .` && `docker push 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.0`
+- create and push the image: `docker build -t 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.1 .` && `docker push 95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.1`
 
 ### 🪾 step-07 🪾
 
-- update the `devcontainer.json` file: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.0",`
+- update the `devcontainer.json` file: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.1",`

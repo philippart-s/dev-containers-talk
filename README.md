@@ -58,7 +58,7 @@
   - JBang extension
 - Test Jbang: `jbang hello@jbangdev world`
 
-## 🧰 Add custom tool: SliDesk and Javelit 🧰
+## 🧰 Add custom tool: OVHcloud CLI and Httpd 🧰
 
 ### 🪾 step-03 🪾
 - create the installation script `install-ovh-cli.sh`

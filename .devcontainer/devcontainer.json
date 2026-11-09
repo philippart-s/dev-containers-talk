@@ -15,13 +15,13 @@
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
       "installMaven": true,
-			"mavenVersion": "3.9.14",
-      "version": "26",
+			"mavenVersion": "3.10.0",
+      "version": "27",
       "jdkDistro": "tem"
     },
 		"ghcr.io/devcontainers-extra/features/jbang-sdkman:2": {
-			"jdkDistro": "tem",
-			"jdkVersion": "26-tem"
+			"version": "0.143.0",
+			"jdkVersion": "none"
 		},
 		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
 	},
@@ -37,7 +37,7 @@
 			"settings": {
 				"java.configuration.runtimes": [
 					{
-						"name": "JavaSE-26",
+						"name": "JavaSE-27",
 						"path": "/usr/local/sdkman/candidates/java/current/"
 					}
 				]

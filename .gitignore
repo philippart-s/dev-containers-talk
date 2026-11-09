@@ -25,3 +25,5 @@ replay_pid*
 
 # ⚙️ Configuration files ⚙️
 .env
+# Claude Code local settings
+.claude/settings.local.json

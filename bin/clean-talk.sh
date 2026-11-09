@@ -4,7 +4,8 @@
 #   - the step-08 compose network,
 #   - talk images (VS Code builds, bin/prepare-talk.sh builds, Harbor images, base images, postgres),
 #   - the old step-10 Docker in Docker volume and unused anonymous volumes,
-#   - the whole Docker build cache (not only the talk's: Docker cannot prune it per project).
+#   - the whole Docker build cache (not only the talk's: Docker cannot prune it per project),
+# then gives the freed space back to macOS (fstrim of the Rancher Desktop VM disk).
 # Run ./bin/prepare-talk.sh afterwards to warm everything again.
 #
 # Usage:
@@ -94,3 +95,16 @@ docker builder prune -af > /dev/null && echo "  ✅ build cache"
 
 info "Disk usage after"
 docker system df
+
+# The VM disk is a sparse file on macOS: freed blocks are only given back once trimmed.
+# `sudo` runs inside the Rancher Desktop VM, no macOS admin rights are needed.
+VM_DISK="$HOME/Library/Application Support/rancher-desktop/lima/0/diffdisk"
+if command -v rdctl > /dev/null 2>&1 && [ -f "$VM_DISK" ]; then
+  info "Giving the freed space back to macOS (fstrim)"
+  before=$(du -sh "$VM_DISK" | cut -f1)
+  if rdctl shell sudo fstrim -v /mnt/data; then
+    echo "  ✅ Rancher Desktop VM disk on macOS: $before → $(du -sh "$VM_DISK" | cut -f1)"
+  else
+    echo "  ⚠️  fstrim failed, the space will stay allocated to the VM disk"
+  fi
+fi

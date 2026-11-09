@@ -14,7 +14,6 @@
   - the cache is per step: each set of features builds its own image layers, warming one step does not warm the others
   - any change to a step configuration (`.devcontainer/`) invalidates the cache of that step: `./bin/prepare-talk.sh step-NN`
 - Do one full rehearsal in VS Code (`git switch` + `Rebuild Container`) to fill the `vscode` volume (VS Code server and extensions)
-- step-10: run the image build once inside the step-10 container (the `dind-var-lib-docker-*` volume keeps its cache)
 - Do not run `docker system prune` / `docker builder prune` or a Rancher Desktop factory reset after the rehearsal
 - On D-day: start Rancher Desktop before going on stage
 - After step-08: stop the database container (`docker ps`, then `docker stop <name>`), `Rebuild Container` on another step does not stop it

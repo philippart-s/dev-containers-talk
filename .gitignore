@@ -25,3 +25,6 @@ replay_pid*
 
 # ⚙️ Configuration files ⚙️
 .env
+
+# Dev Containers lockfile
+devcontainer-lock.json

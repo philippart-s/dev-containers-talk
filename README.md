@@ -76,7 +76,8 @@
 - add the Composer global tools to PATH: `"PATH": "${containerEnv:PATH}:/home/vscode/.composer/vendor/bin"` in `remoteEnv` configuration
 - test OVHcloud CLI: `ovhcloud version`
 - test PHPStan: `phpstan analyse scripts --level=max`
-- test the PHP built-in web server: `php -S 0.0.0.0:8080 -t scripts`, then open http://localhost:8080/hello-world.php
+- forward the port of the PHP built-in web server to the host: `"forwardPorts": [8080]`
+- test the PHP built-in web server: `php -S 0.0.0.0:8080 scripts/hello-world.php` (the script answers every URL), then open http://localhost:8080
 
 ## 🧩 Create a feature 🧩
 

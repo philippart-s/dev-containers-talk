@@ -141,8 +141,9 @@
 ### 🪾 step-10 🪾
 
 - update the `devcontainer.json` file to use custom image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/dev-container-talk:1.2.1"`
-- add the dev container CLI:
+- add Node and the dev container CLI (the CLI feature can no longer install Node by itself):
 ```json
+"ghcr.io/devcontainers/features/node:1": {},
 "ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
 			"version": "latest",
 			"nodeVersion": "latest"

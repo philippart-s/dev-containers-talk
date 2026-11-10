@@ -156,4 +156,21 @@
 
 - update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.6.1"`
 
-## 🗑️ Clean Resources 🗑️ 
+## 🔒 Security 🔒
+
+### 🪾 step-12 🪾
+
+- pin the image by digest (a tag can be moved on the registry, a digest cannot): `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.6.1@sha256:414a5d993ad93a3ee270f83dd8635a907a05cebb312900125d697a3109be9c0f"`
+- run the container itself as a non-root user: `"containerUser": "vscode"`
+- block `sudo` and setuid binaries: `"securityOpt": ["no-new-privileges"]`
+- drop all Linux capabilities: `"runArgs": ["--cap-drop=ALL"]`
+- `Rebuild Container`, then in the container terminal:
+  - `id` and `ps -o user,pid,comm -p 1` → `vscode`, PID 1 included
+  - `sudo -n id` → refused (`no new privileges` flag)
+  - `grep CapEff /proc/self/status` → `0000000000000000`
+  - `java scripts/HelloWorld.java` and `httpd` still work
+- on the host: `docker inspect $(docker ps -q --filter label=devcontainer.local_folder=$PWD) --format '{{.Config.User}} {{.HostConfig.Privileged}} {{.HostConfig.CapDrop}} {{.HostConfig.SecurityOpt}}'`
+- configurations with features: `devcontainer-lock.json` pins the version and digest of each feature and is meant to be committed with the code (this demo repository ignores it to keep the steps readable)
+- more answers in [docs/security.md](https://github.com/philippart-s/dev-containers-talk/blob/main/docs/security.md)
+
+## 🗑️ Clean Resources 🗑️

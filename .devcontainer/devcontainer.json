@@ -21,6 +21,8 @@
 			"version": "0.143.0",
 			"jdkVersion": "none"
 		},
+		// Node first: the CLI feature no longer installs it by itself
+		"ghcr.io/devcontainers/features/node:1": {},
 		"ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
 			"version": "latest",
 			"nodeVersion": "latest"

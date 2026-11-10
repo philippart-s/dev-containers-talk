@@ -58,7 +58,8 @@ check_environment() {
 build() {
   local label=$1 dir=$2 start rc
   start=$(date +%s)
-  "${DEVCONTAINER_CLI[@]}" build --workspace-folder "$dir" > "$WORK_DIR/$label.log" 2>&1
+  # stable image name: each run replaces the previous image instead of adding a new vsc-<folder>-<hash> one
+  "${DEVCONTAINER_CLI[@]}" build --workspace-folder "$dir" --image-name "dev-containers-talk/$label:prepare" > "$WORK_DIR/$label.log" 2>&1
   rc=$?
   local seconds=$(( $(date +%s) - start ))
   if [ $rc -eq 0 ]; then

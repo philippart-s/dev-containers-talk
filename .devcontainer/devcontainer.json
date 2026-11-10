@@ -2,5 +2,5 @@
 
   // Dev Container to do PHP coding
 	"name": "PHP Coding",
-	"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.0"
+	"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.1"
 }

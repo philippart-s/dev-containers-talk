@@ -1,9 +1,9 @@
 {	// 08-🔒 Security 🔒
 
-  // Dev Container to do Java coding
-	"name": "Java Coding",
+  // Dev Container to do PHP coding
+	"name": "PHP Coding",
 	// Image pinned by digest: a tag can be moved on the registry, a digest cannot
-	"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.6.1@sha256:414a5d993ad93a3ee270f83dd8635a907a05cebb312900125d697a3109be9c0f",
+	"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.0@sha256:9a90dd477fc09c7862cc82bce50a526e90d542c835fe9c06198257f9279417a4",
 
 	// Run the container itself (PID 1) as a non-root user
 	"containerUser": "vscode",

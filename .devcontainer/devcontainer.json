@@ -3,7 +3,7 @@
   // Dev Container to do PHP coding
 	"name": "PHP Coding",
 	// Image pinned by digest: a tag can be moved on the registry, a digest cannot
-	"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.0@sha256:9a90dd477fc09c7862cc82bce50a526e90d542c835fe9c06198257f9279417a4",
+	"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.1@sha256:5d4ff1a955f7ae9f5fbf54a09e870291b07909ef07beae7ea9035f14ccfee1ef",
 
 	// Run the container itself (PID 1) as a non-root user
 	"containerUser": "vscode",

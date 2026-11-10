@@ -76,7 +76,8 @@
 - add the Composer global tools to PATH: `"PATH": "${containerEnv:PATH}:/home/vscode/.composer/vendor/bin"` in `remoteEnv` configuration
 - test OVHcloud CLI: `ovhcloud version`
 - test PHPStan: `phpstan analyse scripts --level=max`
-- test the PHP built-in web server: `php -S 0.0.0.0:8080 -t scripts`, then open http://localhost:8080/hello-world.php
+- forward the port of the PHP built-in web server to the host: `"forwardPorts": [8080]`
+- test the PHP built-in web server: `php -S 0.0.0.0:8080 scripts/hello-world.php` (the script answers every URL), then open http://localhost:8080
 
 ## 🧩 Create a feature 🧩
 
@@ -150,18 +151,18 @@
 ```
 - add Docker outside of Docker: `"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}` (the build uses the Rancher Desktop engine and its cache)
 - create the image configuration `.devcontainer/image/devcontainer.json`: same tools without Docker outside of Docker and the dev container CLI
-- build the image: `devcontainer build --workspace-folder . --config .devcontainer/image/devcontainer.json --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.0`
+- build the image: `devcontainer build --workspace-folder . --config .devcontainer/image/devcontainer.json --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.1`
 - PHP is compiled once, in the image: the containers created from it no longer compile it
 
 ### 🪾 step-11 🪾
 
-- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.0"`
+- update the `devcontainer.json` file to use dev container image: `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.1"`
 
 ## 🔒 Security 🔒
 
 ### 🪾 step-12 🪾
 
-- pin the image by digest (a tag can be moved on the registry, a digest cannot): `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.0@sha256:9a90dd477fc09c7862cc82bce50a526e90d542c835fe9c06198257f9279417a4"`
+- pin the image by digest (a tag can be moved on the registry, a digest cannot): `"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.1@sha256:5d4ff1a955f7ae9f5fbf54a09e870291b07909ef07beae7ea9035f14ccfee1ef"`
 - run the container itself as a non-root user: `"containerUser": "vscode"`
 - block `sudo` and setuid binaries: `"securityOpt": ["no-new-privileges"]`
 - drop all Linux capabilities: `"runArgs": ["--cap-drop=ALL"]`
@@ -169,7 +170,7 @@
   - `id` and `ps -o user,pid,comm -p 1` → `vscode`, PID 1 included
   - `sudo -n id` → refused (`no new privileges` flag)
   - `grep CapEff /proc/self/status` → `0000000000000000`
-  - `php scripts/hello-world.php` and `php -S 0.0.0.0:8080 -t scripts` still work
+  - `php scripts/hello-world.php` and `php -S 0.0.0.0:8080 scripts/hello-world.php` still work
 - on the host: `docker inspect $(docker ps -q --filter label=devcontainer.local_folder=$PWD) --format '{{.Config.User}} {{.HostConfig.Privileged}} {{.HostConfig.CapDrop}} {{.HostConfig.SecurityOpt}}'`
 - configurations with features: `devcontainer-lock.json` pins the version and digest of each feature and is meant to be committed with the code (this demo repository ignores it to keep the steps readable)
 - more answers in [docs/security.md](https://github.com/philippart-s/dev-containers-talk/blob/main/docs/security.md)

@@ -76,7 +76,8 @@
 - add the Composer global tools to PATH: `"PATH": "${containerEnv:PATH}:/home/vscode/.composer/vendor/bin"` in `remoteEnv` configuration
 - test OVHcloud CLI: `ovhcloud version`
 - test PHPStan: `phpstan analyse scripts --level=max`
-- test the PHP built-in web server: `php -S 0.0.0.0:8080 -t scripts`, then open http://localhost:8080/hello-world.php
+- forward the port of the PHP built-in web server to the host: `"forwardPorts": [8080]`
+- test the PHP built-in web server: `php -S 0.0.0.0:8080 scripts/hello-world.php` (the script answers every URL), then open http://localhost:8080
 
 ## 🧩 Create a feature 🧩
 
@@ -150,5 +151,5 @@
 ```
 - add Docker outside of Docker: `"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}` (the build uses the Rancher Desktop engine and its cache)
 - create the image configuration `.devcontainer/image/devcontainer.json`: same tools without Docker outside of Docker and the dev container CLI
-- build the image: `devcontainer build --workspace-folder . --config .devcontainer/image/devcontainer.json --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.0`
+- build the image: `devcontainer build --workspace-folder . --config .devcontainer/image/devcontainer.json --push false --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.1`
 - PHP is compiled once, in the image: the containers created from it no longer compile it

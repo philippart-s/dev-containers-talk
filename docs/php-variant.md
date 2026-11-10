@@ -15,10 +15,12 @@ The main talk is the Java one (`step-NN` branches). For a PHP audience (first us
 | step-00: `Java` template, `25-trixie`, Maven | `PHP` template, `8.5-trixie` (`mcr.microsoft.com/devcontainers/php` image, PHP precompiled) |
 | `ghcr.io/devcontainers/features/java:1` (Java 27, Maven 3.10.0) | `ghcr.io/devcontainers/features/php:1` (PHP 8.5, Composer and Xdebug, compiled from source) |
 | `ghcr.io/devcontainers-extra/features/jbang-sdkman:2`, `jbang hello@jbangdev world` | `ghcr.io/shyim/devcontainers-features/symfony-cli:0`, `symfony check:requirements` |
-| step-03: `jbang app install httpd@jbangdev`, JBang folder in `PATH` | `composer global require phpstan/phpstan`, `/home/vscode/.composer/vendor/bin` in `PATH`; web server: `php -S 0.0.0.0:8080 -t scripts` |
+| step-03: `jbang app install httpd@jbangdev`, JBang folder in `PATH` | `composer global require phpstan/phpstan`, `/home/vscode/.composer/vendor/bin` in `PATH`; web server: `php -S 0.0.0.0:8080 scripts/hello-world.php` with `"forwardPorts": [8080]` |
 | VS Code: `JavaSE-27` runtime, JBang and Java pack extensions | `php.validate.executablePath`, Intelephense and Xdebug extensions, `XDEBUG_MODE=off` in `remoteEnv` |
 | step-09: `java-coding` template | `php-coding` template (same repository: `philippart-s/dev-containers-template-talk`) |
-| step-10/11/12: `devcontainer-base-image-talk:1.6.1` | `devcontainer-php-image-talk:1.0.0` |
+| step-10/11/12: `devcontainer-base-image-talk:1.6.1` | `devcontainer-php-image-talk:1.0.1` |
+
+`forwardPorts` is needed: VS Code does not detect `php -S` by itself, while it detects the JBang `httpd` of the Java variant. The PHP built-in web server does not list folders, so `/` would answer 404 with `-t scripts`: the script is used as a router instead and answers every URL.
 
 Xdebug is turned off with `XDEBUG_MODE=off`: with the feature defaults (`xdebug.mode=debug`, `start_with_request=yes`), every `php` command prints a "Could not connect to debugging client" warning. To debug: `XDEBUG_MODE=debug php …`. The `mcr.microsoft.com/devcontainers/php` image of step-00/01 has the same behaviour: the warning shows up live, before step-02 turns Xdebug off.
 
@@ -36,10 +38,10 @@ From `php/step-10`, in the dev container:
 
 ```bash
 devcontainer build --workspace-folder . --config .devcontainer/image/devcontainer.json --push false \
-  --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.0
-docker push 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.0
+  --image-name 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.1
+docker push 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.1
 ```
 
 Then report the digest of the pushed image in `.devcontainer/devcontainer.json` and in the README of `php/step-12`:
-`docker inspect --format '{{index .RepoDigests 0}}' 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.0`.
+`docker inspect --format '{{index .RepoDigests 0}}' 95y036e0.gra7.container-registry.ovh.net/library/devcontainer-php-image-talk:1.0.1`.
 With the Harbor tag immutability rule, a new image needs a new tag (`1.0.1`, …).

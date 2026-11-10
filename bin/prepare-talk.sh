@@ -19,7 +19,10 @@ PULL_IMAGES=(postgres:18)
 DEVCONTAINER_CLI=(npx -y @devcontainers/cli)
 
 REPO_ROOT="$(git -C "$(dirname "$0")" rev-parse --show-toplevel)" || exit 1
-WORK_DIR="$(mktemp -d -t prepare-talk)"
+# Fixed path: for compose configs (step-08) the CLI names an extra image after the folder path,
+# a stable path makes each run replace that image instead of adding a new one.
+WORK_DIR="${TMPDIR:-/tmp}/dev-containers-talk-prepare"
+rm -rf "$WORK_DIR" && mkdir -p "$WORK_DIR"
 FAILURES=()
 SUMMARY=()
 

@@ -5,5 +5,6 @@
 - Never work directly on `main`: use a work branch. `step-*` branches can be edited directly.
 - Demo machine: MacBook Air M3 16 GB, Rancher Desktop (`moby`, `vz`, `virtiofs`, no admin access). Java 27 and the latest `ovhcloud` CLI are installed on the host; containers use Java 25/26 and `ovhcloud` v0.16.0.
 - One clone, one VS Code window: `git switch step-NN` then `Dev Containers: Rebuild Container`. Fast only if the Docker build cache was warmed beforehand.
+- PHP variant (one-off talks for PHP audiences): `php/step-NN` branches, each created from `step-NN` with one commit for the language part; see `docs/php-variant.md`. The Java `step-NN` branches stay the main talk.
 - Images are pushed to the OVHcloud Harbor registry `95y036e0.gra7.container-registry.ovh.net/library/`.
 - Related repos: `../dev-containers-template-talk` (template, step-09), `../feature-dev-containers-talk` (feature, step-05).

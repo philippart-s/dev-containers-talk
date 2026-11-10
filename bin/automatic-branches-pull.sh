@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in $(seq -w 0 11); do
+for i in $(seq -w 0 12); do
   git switch step-$i
   git pull
 done

@@ -3,6 +3,9 @@
 	"name": "PHP Coding",
 	"image": "mcr.microsoft.com/devcontainers/base:noble",
 
+	// Port of the PHP built-in web server, forwarded to the host
+	"forwardPorts": [8080],
+
 	// Executed commands after container creation
 	"postCreateCommand": {
 		"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh",

@@ -1,4 +1,6 @@
-# 🗺️ Dev Containers talk steps 🗺️
+# 🗺️ Dev Containers talk steps (PHP variant) 🗺️
+
+> PHP variant of the talk (`php/step-NN` branches). The main talk is the Java one (`step-NN` branches), see [docs/php-variant.md](https://github.com/philippart-s/dev-containers-talk/blob/main/docs/php-variant.md).
 
 ## 🏗️ Dev Containers installation 🏗️
 
@@ -8,11 +10,10 @@
 
 ## 🔥 Before the talk 🔥
 
-- Prepare the machine from `main` (about 10 minutes): `./bin/prepare-talk.sh`
-  - checks the container engine, warms the Docker build cache of every step and of the step-09 template, pulls `postgres:18`, reports leftover demo containers
-  - the working tree is not touched (each step is exported with `git archive`)
-  - the cache is per step: each set of features builds its own image layers, warming one step does not warm the others
-  - any change to a step configuration (`.devcontainer/`) invalidates the cache of that step: `./bin/prepare-talk.sh step-NN`
+- Prepare the machine from `main`: `TALK_VARIANT=php ./bin/prepare-talk.sh`
+  - checks the container engine, warms the Docker build cache of every `php/step-NN` branch and of the step-09 template, pulls `postgres:18`, reports leftover demo containers
+  - the PHP feature compiles PHP and Xdebug from source: a cold build takes about 4 minutes per step, the warm-up is mandatory
+  - any change to a step configuration (`.devcontainer/`) invalidates the cache of that step: `./bin/prepare-talk.sh php/step-NN`
 - Do one full rehearsal in VS Code (`git switch` + `Rebuild Container`) to fill the `vscode` volume (VS Code server and extensions)
 - Do not run `docker system prune` / `docker builder prune` or a Rancher Desktop factory reset after the rehearsal
 - On D-day: start Rancher Desktop before going on stage
@@ -21,11 +22,11 @@
 ## 🧹 Between talks 🧹
 
 - Recover disk space from `main`: `./bin/clean-talk.sh` (`--dry-run` only lists, `--all` also removes the `vscode` volume)
-  - removes the demo containers, the step-08 compose network, the talk images, the old step-10 Docker in Docker volume and the whole Docker build cache (other projects included)
-  - run `./bin/prepare-talk.sh` again before the next talk
+  - removes the demo containers, the step-08 compose network, the talk images (Java and PHP), the old step-10 Docker in Docker volume and the whole Docker build cache (other projects included)
+  - run `TALK_VARIANT=php ./bin/prepare-talk.sh` again before the next talk
 
 ## 📦 Talk resources 📦
-  - one clone, one VS Code window: for each step, `git switch step-NN` then `SHIFT + CMD + P`: `Dev Containers: Rebuild Container`
+  - one clone, one VS Code window: for each step, `git switch php/step-NN` then `SHIFT + CMD + P`: `Dev Containers: Rebuild Container`
     (`Reopen in Container` would reuse the container of the previous step: same folder, same config path)
   - open in Firefox:
     - https://github.com/devcontainers/feature-starter
@@ -33,7 +34,7 @@
     - https://github.com/devcontainers/template-starter
     - https://github.com/philippart-s/dev-containers-template-talk
   - open a terminal on the host to compare with the containers:
-    - `java --version` → Java 27 (host) vs Java 25 (step-00)
+    - `php --version` and `composer --version` → not installed on the host vs PHP 8.5 and Composer in the containers
     - `ovhcloud version` → latest (host) vs v0.16.0 (containers)
     - `docker context ls` → Rancher Desktop, not Docker Desktop
 
@@ -41,16 +42,15 @@
 
 ### 🪾 step-00 🪾
 - Create the Dev Container configuration file: `SHIFT + CMD + P`: `Dev Containers: Add Dev Containers configuration Files...`
-  - Choose `Java devcontainers`
-  - additional options: `25-trixie`
-  - install Maven
+  - Choose `PHP`
+  - additional options: `8.5-trixie`
 - Click `Reopen in Container` (or `SHIFT + CMD + P`: `Dev Containers: Reopen in Container`)
 - Open the newly created configuration: `SHIFT + CMD + P`: `Dev Containers: Open Container Configuration File...`
-- Test Java configuration:
-  - `java --version` → Java 25 (Java 27 on the host)
-  - `mvn --version`
-  - test with "Hello, World" app: `01-java-hello-world`
-  - display ubuntu version: `cat /etc/os-release`
+- Test PHP configuration:
+  - `php --version` → PHP 8.5 (not installed on the host)
+  - `composer --version`
+  - test with "Hello, World" script: `php scripts/hello-world.php`
+  - display debian version: `cat /etc/os-release`
 - Remove the generated configuration before switching to step-02: `rm -rf .devcontainer`
 
 ### 🪾 step-01 🪾
@@ -60,24 +60,23 @@
 
 ### 🪾 step-02 🪾
 - use Dev Container `base` image
-- add java with
-  - Maven 3.10.0
-  - Java 27
-- JBang 0.143.0 with SDKMan
-- Set JBang in the path (to be accessible by the extension)
+- add PHP 8.5 with the `php` feature (Composer and Xdebug included, compiled from source)
+- Symfony CLI with the `symfony-cli` feature
+- Turn Xdebug off by default: `"XDEBUG_MODE": "off"` in `remoteEnv` configuration (`XDEBUG_MODE=debug php …` to debug)
 - Configure VSCode:
-  - Java 27 path
-  - JBang extension
-- Test Jbang: `jbang hello@jbangdev world`
+  - PHP path for validation
+  - Intelephense and Xdebug extensions
+- Test Symfony CLI: `symfony check:requirements`
 
-## 🧰 Add custom tool: OVHcloud CLI and Httpd 🧰
+## 🧰 Add custom tool: OVHcloud CLI and PHPStan 🧰
 
 ### 🪾 step-03 🪾
 - create the installation script `install-ovh-cli.sh`
-- add post command configuration `"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh"` && `"Httpd": "jbang app setup && jbang app install httpd@jbangdev"` in `postCreateCommand` configuration
-- add httpd to PATH: `"PATH": "${containerEnv:PATH}:/usr/local/sdkman/candidates/jbang/current/bin"` in `remoteEnv` configuration
+- add post command configuration `"OVHcloud CLI": "./.devcontainer/install-ovh-cli.sh"` && `"PHPStan": "composer global require phpstan/phpstan"` in `postCreateCommand` configuration
+- add the Composer global tools to PATH: `"PATH": "${containerEnv:PATH}:/home/vscode/.composer/vendor/bin"` in `remoteEnv` configuration
 - test OVHcloud CLI: `ovhcloud version`
-- test httpd: `httpd`
+- test PHPStan: `phpstan analyse scripts --level=max`
+- test the PHP built-in web server: `php -S 0.0.0.0:8080 -t scripts`, then open http://localhost:8080/hello-world.php
 
 ## 🧩 Create a feature 🧩
 

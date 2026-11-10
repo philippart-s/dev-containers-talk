@@ -1,0 +1,14 @@
+{	// 08-🔒 Security 🔒
+
+  // Dev Container to do Java coding
+	"name": "Java Coding",
+	// Image pinned by digest: a tag can be moved on the registry, a digest cannot
+	"image": "95y036e0.gra7.container-registry.ovh.net/library/devcontainer-base-image-talk:1.6.1@sha256:414a5d993ad93a3ee270f83dd8635a907a05cebb312900125d697a3109be9c0f",
+
+	// Run the container itself (PID 1) as a non-root user
+	"containerUser": "vscode",
+	// Block sudo and setuid binaries: no process can gain privileges
+	"securityOpt": ["no-new-privileges"],
+	// Drop all Linux capabilities granted by default
+	"runArgs": ["--cap-drop=ALL"]
+}

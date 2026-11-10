@@ -12,7 +12,7 @@
 
 set -uo pipefail
 
-ALL_STEPS=(step-01 step-02 step-03 step-04 step-05 step-06 step-07 step-08 step-10 step-11)
+ALL_STEPS=(step-01 step-02 step-03 step-04 step-05 step-06 step-07 step-08 step-10 step-11 step-12)
 TEMPLATE="ghcr.io/philippart-s/dev-containers-template-talk/java-coding:latest"
 TEMPLATE_ARGS='{"imageVariant":"bullseye"}'
 PULL_IMAGES=(postgres:18)

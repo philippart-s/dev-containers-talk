@@ -9,12 +9,19 @@
 # Usage:
 #   ./bin/prepare-talk.sh                 # every step + template + images
 #   ./bin/prepare-talk.sh step-06 step-10 # only these steps (after a change in their .devcontainer/)
+#   TALK_VARIANT=php ./bin/prepare-talk.sh  # PHP variant: php/step-NN branches + php-coding template (docs/php-variant.md)
 
 set -uo pipefail
 
-ALL_STEPS=(step-01 step-02 step-03 step-04 step-05 step-06 step-07 step-08 step-10 step-11 step-12)
-TEMPLATE="ghcr.io/philippart-s/dev-containers-template-talk/java-coding:latest"
-TEMPLATE_ARGS='{"imageVariant":"bullseye"}'
+# step-00 has no configuration (created live), step-01 holds its result; step-09 is the template, warmed apart
+case "${TALK_VARIANT:-java}" in
+  java) PREFIX="";     TEMPLATE_ID=java-coding; TEMPLATE_ARGS='{"imageVariant":"bullseye"}' ;;
+  php)  PREFIX="php/"; TEMPLATE_ID=php-coding;  TEMPLATE_ARGS='{"imageVariant":"noble"}' ;;
+  *) echo "❌ Unknown TALK_VARIANT: $TALK_VARIANT (java or php)"; exit 1 ;;
+esac
+ALL_STEPS=()
+for n in 01 02 03 04 05 06 07 08 10 11 12; do ALL_STEPS+=("${PREFIX}step-$n"); done
+TEMPLATE="ghcr.io/philippart-s/dev-containers-template-talk/$TEMPLATE_ID:latest"
 PULL_IMAGES=(postgres:18)
 DEVCONTAINER_CLI=(npx -y @devcontainers/cli)
 
@@ -86,15 +93,16 @@ warm_steps() {
 }
 
 warm_template() {
-  info "Build cache of the step-09 template"
-  local dir="$WORK_DIR/step-09-template"
+  info "Build cache of the step-09 template ($TEMPLATE_ID)"
+  local label="${PREFIX}step-09-template"
+  local dir="$WORK_DIR/$label"
   mkdir -p "$dir"
-  if ! "${DEVCONTAINER_CLI[@]}" templates apply -t "$TEMPLATE" -w "$dir" -a "$TEMPLATE_ARGS" > "$WORK_DIR/step-09-template-apply.log" 2>&1; then
-    fail "template apply, log: $WORK_DIR/step-09-template-apply.log"
-    FAILURES+=("step-09-template")
+  if ! "${DEVCONTAINER_CLI[@]}" templates apply -t "$TEMPLATE" -w "$dir" -a "$TEMPLATE_ARGS" > "$WORK_DIR/$label-apply.log" 2>&1; then
+    fail "template apply, log: $WORK_DIR/$label-apply.log"
+    FAILURES+=("$label")
     return
   fi
-  build "step-09-template" "$dir"
+  build "$label" "$dir"
 }
 
 pull_images() {

@@ -24,6 +24,11 @@
   - removes the demo containers, the step-08 compose network, the talk images, the old step-10 Docker in Docker volume and the whole Docker build cache (other projects included)
   - run `./bin/prepare-talk.sh` again before the next talk
 
+## 🐘 PHP variant 🐘
+
+- `php/step-NN` branches: same talk with PHP, Composer and Symfony CLI instead of Java, Maven and JBang
+- prepare with `TALK_VARIANT=php ./bin/prepare-talk.sh`, script of the talk in the README of `php/step-12`, details in [docs/php-variant.md](docs/php-variant.md)
+
 ## 📦 Talk resources 📦
   - one clone, one VS Code window: for each step, `git switch step-NN` then `SHIFT + CMD + P`: `Dev Containers: Rebuild Container`
     (`Reopen in Container` would reuse the container of the previous step: same folder, same config path)

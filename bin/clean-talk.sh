@@ -2,7 +2,7 @@
 # Removes everything the talk left in the container engine, to recover disk space between talks:
 #   - demo containers (VS Code dev containers of this repository, step-08 compose project),
 #   - the step-08 compose network,
-#   - talk images (VS Code builds, bin/prepare-talk.sh builds, Harbor images, base images, postgres),
+#   - talk images, Java and PHP variants (VS Code builds, bin/prepare-talk.sh builds, Harbor images, base images, postgres),
 #   - the old step-10 Docker in Docker volume and unused anonymous volumes,
 #   - the whole Docker build cache (not only the talk's: Docker cannot prune it per project),
 # then gives the freed space back to macOS (fstrim of the Rancher Desktop VM disk).
@@ -18,7 +18,7 @@ set -uo pipefail
 
 REPO_ROOT="$(git -C "$(dirname "$0")" rev-parse --show-toplevel)" || exit 1
 COMPOSE_PROJECT="$(basename "$REPO_ROOT")_devcontainer"
-IMAGE_PATTERN='^(vsc-(dev-containers-talk|step-[0-9]{2}(-template)?)-[0-9a-f]+(-features)?|dev-containers-talk/step-[0-9]{2}(-template)?|check-step-[0-9]{2}|95y036e0\.gra7\.container-registry\.ovh\.net/library/(dev-container-talk|devcontainer-base-image-talk)|mcr\.microsoft\.com/devcontainers/(base|java)|postgres):'
+IMAGE_PATTERN='^(vsc-(dev-containers-talk|step-[0-9]{2}(-template)?)-[0-9a-f]+(-features)?|dev-containers-talk/(php/)?step-[0-9]{2}(-template)?|check-step-[0-9]{2}|95y036e0\.gra7\.container-registry\.ovh\.net/library/(dev-container-talk|devcontainer-base-image-talk|devcontainer-php-image-talk)|mcr\.microsoft\.com/devcontainers/(base|java|php)|postgres):'
 
 DRY_RUN=false
 ASSUME_YES=false

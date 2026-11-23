@@ -10,14 +10,14 @@
 
 - Prepare the machine from `main` (about 10 minutes): `./bin/prepare-talk.sh`
   - checks the container engine, warms the Docker build cache of every step, of the image built live in step-10 and of the step-09 template, pulls `postgres:18`, reports leftover demo containers
-  - checks that the `vscode` volume holds the server of the installed VS Code and the extensions of the talk
+  - checks that the `vscode` volume holds the server of the installed VS Code and the extensions of the talk, and fills it when needed: VS Code opens `step-11` in a dev container, close the window once the script says so
   - the working tree is not touched (each step is exported with `git archive`)
   - the cache is per step: each set of features builds its own image layers, warming one step does not warm the others
   - any change to a step configuration (`.devcontainer/`) invalidates the cache of that step: `./bin/prepare-talk.sh step-NN`
   - a new version of the dev container CLI also invalidates it: run the script again a few days before the talk
-- Fill the `vscode` volume (VS Code server and extensions) if the script reports it incomplete: `./bin/prepare-talk.sh --vscode`
-  - opens `step-11` in a VS Code dev container and waits for the cache, then close the window
+- VS Code cache only (`vscode` volume: VS Code server and extensions): `./bin/prepare-talk.sh --vscode`
   - one container is enough: the volume is shared by every dev container
+  - a run limited to some steps (`./bin/prepare-talk.sh step-NN`) only checks the cache
 - Block VS Code updates until the talk (`"update.mode": "manual"`): a new version needs a new server in the volume (`./bin/prepare-talk.sh --vscode` again)
 - Do one rehearsal in VS Code (`git switch` + `Rebuild Container`)
 - Do not run `docker system prune` / `docker builder prune` or a Rancher Desktop factory reset after the rehearsal
@@ -198,6 +198,6 @@ After the talk:
    - old step-10 Docker in Docker volume and unused anonymous volumes
    - the whole Docker build cache, other projects included (Docker cannot prune it per project)
    - then gives the freed space back to macOS (`fstrim` of the Rancher Desktop VM disk, no admin rights needed)
-5. To also remove the VS Code server and extensions cache: `./bin/clean-talk.sh --all` (removes the `vscode` volume, `./bin/prepare-talk.sh --vscode` fills it again)
+5. To also remove the VS Code server and extensions cache: `./bin/clean-talk.sh --all` (removes the `vscode` volume, the next `./bin/prepare-talk.sh` fills it again)
 6. Check the result: `docker system df`, and the size of the VM disk on macOS: `du -sh ~/Library/Application\ Support/rancher-desktop/lima/0/diffdisk`
 7. Turn VS Code updates back on if they were blocked for the talk (`"update.mode"`)

@@ -4,14 +4,15 @@
 #   - warms the Docker build cache of each step, of the image built live in step-10 and of the step-09 template,
 #   - pulls the images used outside of a build (postgres for step-08),
 #   - checks that the VS Code server and the extensions of the talk are in the `vscode` volume,
+#     and fills it when needed (full run only): opens step-11 in a VS Code dev container, to be closed afterwards,
 #   - reports leftover demo containers.
 # The working tree is not touched: each step is exported with `git archive` into a temporary folder.
 #
 # Usage:
-#   ./bin/prepare-talk.sh                 # every step + template + images
+#   ./bin/prepare-talk.sh                 # every step + template + images + VS Code cache
 #   ./bin/prepare-talk.sh step-06 step-10 # only these steps (after a change in their .devcontainer/)
 #   TALK_VARIANT=php ./bin/prepare-talk.sh  # PHP variant: php/step-NN branches + php-coding template (docs/php-variant.md)
-#   ./bin/prepare-talk.sh --vscode          # only fill the `vscode` volume: opens step-11 in a VS Code dev container
+#   ./bin/prepare-talk.sh --vscode          # only the VS Code cache (`vscode` volume)
 
 set -uo pipefail
 
@@ -178,13 +179,13 @@ check_vscode_cache() {
 fill_vscode_cache() {
   info "Filling the VS Code cache with ${PREFIX}step-11"
   local code version commit dir hex waited=0 missing
-  code=$(code_cli) || { fail "VS Code CLI not found"; exit 1; }
+  code=$(code_cli) || { fail "VS Code CLI not found"; return 1; }
   read -r version commit < <("$code" --version | head -2 | tr '\n' ' ')
   missing=$(vscode_cache_missing "$commit")
   if [ -z "$missing" ]; then ok "already complete for VS Code $version"; return; fi
   dir="$VSCODE_DIR/${PREFIX}step-11"
   rm -rf "$dir" && mkdir -p "$dir"
-  git -C "$REPO_ROOT" archive "${PREFIX}step-11" | tar -x -C "$dir" || { fail "${PREFIX}step-11: local branch not found"; exit 1; }
+  git -C "$REPO_ROOT" archive "${PREFIX}step-11" | tar -x -C "$dir" || { fail "${PREFIX}step-11: local branch not found"; return 1; }
   # Undocumented URI scheme of the Dev Containers extension: dev-container+<JSON in hex>/<folder in the container>.
   # The Docker context must be in the JSON: opened this way, the extension skips its own context detection
   # and falls back to the `default` context (/var/run/docker.sock, absent with Rancher Desktop).
@@ -197,7 +198,7 @@ fill_vscode_cache() {
   done
   if [ -n "$missing" ]; then
     fail "still missing after ${VSCODE_TIMEOUT}s: $(tr '\n' ' ' <<< "$missing")"
-    exit 1
+    return 1
   fi
   ok "VS Code $version server and extensions cached (${waited}s), you can close the VS Code window"
 }
@@ -217,7 +218,7 @@ check_leftovers() {
 VSCODE_TODO=false
 if [ "${1:-}" = "--vscode" ]; then
   docker info > /dev/null 2>&1 || { fail "Docker engine unreachable: start Rancher Desktop"; exit 1; }
-  fill_vscode_cache
+  fill_vscode_cache || exit 1
   exit 0
 fi
 
@@ -237,6 +238,16 @@ if $FULL; then
   pull_images
 fi
 check_vscode_cache
+# Full run: fill the cache when it is incomplete (a partial run only reports it)
+if $FULL && $VSCODE_TODO && code_cli > /dev/null; then
+  if fill_vscode_cache; then
+    VSCODE_TODO=false
+    SUMMARY+=("vscode-cache ✅")
+  else
+    SUMMARY+=("vscode-cache ❌")
+    FAILURES+=("vscode-cache")
+  fi
+fi
 check_leftovers
 
 info "Summary"

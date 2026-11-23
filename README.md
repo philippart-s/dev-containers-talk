@@ -26,9 +26,8 @@
 
 ## 🧹 Between talks 🧹
 
-- Recover disk space from `main`: `./bin/clean-talk.sh` (`--dry-run` only lists, `--all` also removes the `vscode` volume)
-  - removes the demo containers, the step-08 compose network, the talk images, the old step-10 Docker in Docker volume and the whole Docker build cache (other projects included)
-  - run `./bin/prepare-talk.sh` again before the next talk
+- Clean everything and recover disk space after each talk: see the `Clean Resources` section at the end of this file
+- Run `./bin/prepare-talk.sh` again before the next talk
 
 ## 🐘 PHP variant 🐘
 
@@ -186,3 +185,19 @@
 - more answers in [docs/security.md](https://github.com/philippart-s/dev-containers-talk/blob/main/docs/security.md)
 
 ## 🗑️ Clean Resources 🗑️
+
+After the talk:
+
+1. Close the VS Code window of the dev container: VS Code stops the container
+2. Back on `main` (the scripts only exist there): `git switch main`
+3. Check what will be removed: `./bin/clean-talk.sh --dry-run`
+4. Remove it: `./bin/clean-talk.sh` (`--yes` without confirmation)
+   - demo containers, including the step-08 `postgres:18` database (`Rebuild Container` and closing VS Code do not stop it)
+   - step-08 compose network
+   - talk images of both variants (VS Code builds, `bin/prepare-talk.sh` builds, Harbor images, `mcr.microsoft.com/devcontainers` base images, `postgres`)
+   - old step-10 Docker in Docker volume and unused anonymous volumes
+   - the whole Docker build cache, other projects included (Docker cannot prune it per project)
+   - then gives the freed space back to macOS (`fstrim` of the Rancher Desktop VM disk, no admin rights needed)
+5. To also remove the VS Code server and extensions cache: `./bin/clean-talk.sh --all` (removes the `vscode` volume, `./bin/prepare-talk.sh --vscode` fills it again)
+6. Check the result: `docker system df`, and the size of the VM disk on macOS: `du -sh ~/Library/Application\ Support/rancher-desktop/lima/0/diffdisk`
+7. Turn VS Code updates back on if they were blocked for the talk (`"update.mode"`)

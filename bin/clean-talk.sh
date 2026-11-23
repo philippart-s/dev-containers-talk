@@ -18,7 +18,7 @@ set -uo pipefail
 
 REPO_ROOT="$(git -C "$(dirname "$0")" rev-parse --show-toplevel)" || exit 1
 COMPOSE_PROJECT="$(basename "$REPO_ROOT")_devcontainer"
-IMAGE_PATTERN='^(vsc-(dev-containers-talk|step-[0-9]{2}(-template)?)-[0-9a-f]+(-features)?|dev-containers-talk/(php/)?step-[0-9]{2}(-template)?|check-step-[0-9]{2}|95y036e0\.gra7\.container-registry\.ovh\.net/library/(dev-container-talk|devcontainer-base-image-talk|devcontainer-php-image-talk)|mcr\.microsoft\.com/devcontainers/(base|java|php)|postgres):'
+IMAGE_PATTERN='^(vsc-(dev-containers-talk|step-[0-9]{2}(-template)?)-[0-9a-f]+(-features)?|dev-containers-talk/(php/)?step-[0-9]{2}(-template|-image)?|check-step-[0-9]{2}|95y036e0\.gra7\.container-registry\.ovh\.net/library/(dev-container-talk|devcontainer-base-image-talk|devcontainer-php-image-talk)|mcr\.microsoft\.com/devcontainers/(base|java|php)|postgres):'
 
 DRY_RUN=false
 ASSUME_YES=false

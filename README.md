@@ -9,11 +9,17 @@
 ## 🔥 Before the talk 🔥
 
 - Prepare the machine from `main` (about 10 minutes): `./bin/prepare-talk.sh`
-  - checks the container engine, warms the Docker build cache of every step and of the step-09 template, pulls `postgres:18`, reports leftover demo containers
+  - checks the container engine, warms the Docker build cache of every step, of the image built live in step-10 and of the step-09 template, pulls `postgres:18`, reports leftover demo containers
+  - checks that the `vscode` volume holds the server of the installed VS Code and the extensions of the talk
   - the working tree is not touched (each step is exported with `git archive`)
   - the cache is per step: each set of features builds its own image layers, warming one step does not warm the others
   - any change to a step configuration (`.devcontainer/`) invalidates the cache of that step: `./bin/prepare-talk.sh step-NN`
-- Do one full rehearsal in VS Code (`git switch` + `Rebuild Container`) to fill the `vscode` volume (VS Code server and extensions)
+  - a new version of the dev container CLI also invalidates it: run the script again a few days before the talk
+- Fill the `vscode` volume (VS Code server and extensions) if the script reports it incomplete: `./bin/prepare-talk.sh --vscode`
+  - opens `step-11` in a VS Code dev container and waits for the cache, then close the window
+  - one container is enough: the volume is shared by every dev container
+- Block VS Code updates until the talk (`"update.mode": "manual"`): a new version needs a new server in the volume (`./bin/prepare-talk.sh --vscode` again)
+- Do one rehearsal in VS Code (`git switch` + `Rebuild Container`)
 - Do not run `docker system prune` / `docker builder prune` or a Rancher Desktop factory reset after the rehearsal
 - On D-day: start Rancher Desktop before going on stage
 - After step-08: stop the database container (`docker ps`, then `docker stop <name>`), `Rebuild Container` on another step does not stop it

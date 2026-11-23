@@ -28,6 +28,8 @@ Xdebug is turned off with `XDEBUG_MODE=off`: with the feature defaults (`xdebug.
 
 - `TALK_VARIANT=php ./bin/prepare-talk.sh` from `main`: warms `php/step-01` … `php/step-12` (except `php/step-09`) and the `php-coding` template, pulls `postgres:18`.
 - One step only: `./bin/prepare-talk.sh php/step-06`.
+- VS Code cache: `TALK_VARIANT=php ./bin/prepare-talk.sh --vscode` opens `php/step-11` in a VS Code dev container and waits until the PHP extensions are in the `vscode` volume.
+- The image built live in `php/step-10` is warmed too: without it, that build compiles PHP again on stage (about 4 minutes), the Node feature of the step-10 dev container changes the order of the layers.
 - The PHP feature compiles PHP from source: about 4 minutes per step on a cold cache (MacBook Air M3, 4 CPUs for the VM). Steps whose features start the same way (`base:noble` + PHP 8.5) reuse the compiled layer.
 - `./bin/clean-talk.sh` removes the images of both variants.
 - On the host, PHP and Composer are not installed: `php --version` → `command not found`, to compare with the containers.

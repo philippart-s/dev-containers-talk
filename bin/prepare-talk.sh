@@ -81,9 +81,13 @@ build() {
   start=$(date +%s)
   # stable image name: each run replaces the previous image instead of adding a new vsc-<folder>-<hash> one
   "${DEVCONTAINER_CLI[@]}" build --workspace-folder "$dir" --image-name "dev-containers-talk/$label:prepare" "$@" > "$WORK_DIR/$label.log" 2>&1
-  rc=$?
-  local seconds=$(( $(date +%s) - start ))
-  if [ $rc -eq 0 ]; then
+  report "$label" $? "$start"
+}
+
+# $1: label, $2: exit code, $3: start time
+report() {
+  local label=$1 rc=$2 seconds=$(( $(date +%s) - $3 ))
+  if [ "$rc" -eq 0 ]; then
     ok "$label (${seconds}s)"
     SUMMARY+=("$label ✅ ${seconds}s")
   else
@@ -103,13 +107,23 @@ warm_steps() {
   done
 }
 
-# step-10 builds the image of step-11 live, from its dev container: Docker outside of Docker uses the same
-# engine and build cache as the host, so building the same configuration here warms the live build.
+# step-10 builds the image of step-11 live, from its dev container (Docker outside of Docker: same engine and
+# build cache as the host). The same build run from the host does not reuse the cache entries of a build run from
+# the container, and the other way round (measured: the feature files mounted in the build differ, most likely by
+# owner), so the warm-up runs the build from a step-10 dev container too, as on stage.
 warm_step10_image() {
-  local dir="$WORK_DIR/${PREFIX}step-10"
+  local dir="$WORK_DIR/${PREFIX}step-10" label="${PREFIX}step-10-image" start rc
+  local id_label="dev-containers-talk.prepare=step-10"
   [ -f "$dir/.devcontainer/image/devcontainer.json" ] || return 0
-  info "Build cache of the image built live in ${PREFIX}step-10"
-  build "${PREFIX}step-10-image" "$dir" --config "$dir/.devcontainer/image/devcontainer.json"
+  info "Build cache of the image built live in ${PREFIX}step-10 (from its dev container)"
+  start=$(date +%s)
+  "${DEVCONTAINER_CLI[@]}" up --workspace-folder "$dir" --id-label "$id_label" --skip-post-create > "$WORK_DIR/$label.log" 2>&1 &&
+    "${DEVCONTAINER_CLI[@]}" exec --workspace-folder "$dir" --id-label "$id_label" bash -lc \
+      "devcontainer build --workspace-folder . --config .devcontainer/image/devcontainer.json --image-name dev-containers-talk/$label:prepare" \
+      >> "$WORK_DIR/$label.log" 2>&1
+  rc=$?
+  docker rm -f $(docker ps -aq --filter "label=$id_label") > /dev/null 2>&1
+  report "$label" $rc "$start"
 }
 
 warm_template() {
